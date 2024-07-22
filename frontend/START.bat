@@ -1,2 +1,1 @@
-npm run dev -- --open
-exit
+pnpm run dev -- --open

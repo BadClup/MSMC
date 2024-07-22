@@ -1,6 +1,7 @@
 <script>
-    import Top from "./Top.svelte";
-    import Footer from "./Footer.svelte";
+    import Top from "./../Top.svelte";
+    import Footer from "./../Footer.svelte";
+    import ChooseServer from "./ChooseServer.svelte";
 </script>
 <style>
     #container{
@@ -12,6 +13,7 @@
 </style>
 
 <div id="container">
-    <Top/>
+    <Top logout={true}/>
+    <ChooseServer/>
     <Footer/>
 </div>

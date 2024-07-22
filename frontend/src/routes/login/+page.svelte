@@ -1,6 +1,7 @@
 <script>
-    import Top from "./Top.svelte";
-    import Footer from "./Footer.svelte";
+    import Login from "./Login.svelte";
+    import Top from "./../Top.svelte";
+    import Footer from "./../Footer.svelte";
 </script>
 <style>
     #container{
@@ -13,5 +14,6 @@
 
 <div id="container">
     <Top/>
+    <Login/>
     <Footer/>
 </div>
