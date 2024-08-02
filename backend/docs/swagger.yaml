@@ -1,9 +1,58 @@
 basePath: /
+definitions:
+  shared.MinecraftEngine:
+    enum:
+    - vanilla
+    - forge
+    type: string
+    x-enum-varnames:
+    - VanillaEngine
+    - ForgeEngine
+  shared.ServerInstance:
+    properties:
+      docker_id:
+        type: string
+      engine:
+        $ref: '#/definitions/shared.MinecraftEngine'
+      name:
+        type: string
+      port:
+        type: string
+      seed:
+        type: string
+    type: object
+  shared.ServerInstanceStatus:
+    properties:
+      running:
+        type: boolean
+      server_instance:
+        $ref: '#/definitions/shared.ServerInstance'
+    type: object
 host: localhost:3000
 info:
   contact: {}
   description: This is MSMC API.
   title: MSMC API
   version: "0.1"
-paths: {}
+paths:
+  /server:
+    get:
+      description: Get all servers
+      operationId: get-all-servers
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/shared.ServerInstanceStatus'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get all servers
+      tags:
+      - server
 swagger: "2.0"

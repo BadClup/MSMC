@@ -8,5 +8,80 @@
     },
     "host": "localhost:3000",
     "basePath": "/",
-    "paths": {}
+    "paths": {
+        "/server": {
+            "get": {
+                "description": "Get all servers",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "server"
+                ],
+                "summary": "Get all servers",
+                "operationId": "get-all-servers",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/shared.ServerInstanceStatus"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "shared.MinecraftEngine": {
+            "type": "string",
+            "enum": [
+                "vanilla",
+                "forge"
+            ],
+            "x-enum-varnames": [
+                "VanillaEngine",
+                "ForgeEngine"
+            ]
+        },
+        "shared.ServerInstance": {
+            "type": "object",
+            "properties": {
+                "docker_id": {
+                    "type": "string"
+                },
+                "engine": {
+                    "$ref": "#/definitions/shared.MinecraftEngine"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "string"
+                },
+                "seed": {
+                    "type": "string"
+                }
+            }
+        },
+        "shared.ServerInstanceStatus": {
+            "type": "object",
+            "properties": {
+                "running": {
+                    "type": "boolean"
+                },
+                "server_instance": {
+                    "$ref": "#/definitions/shared.ServerInstance"
+                }
+            }
+        }
+    }
 }
