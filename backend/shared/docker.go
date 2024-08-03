@@ -9,8 +9,6 @@ import (
 	"os"
 )
 
-const MinecraftImageName = "itzg/minecraft-server"
-
 var DockerClient = func() *client.Client {
 	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
 	if err != nil {
@@ -47,7 +45,7 @@ func pullNeededImages() error {
 	ctx := context.Background()
 
 	imagesToPull := []string{
-		MinecraftImageName,
+		DockerMinecraftImage,
 	}
 
 	for _, imageName := range imagesToPull {

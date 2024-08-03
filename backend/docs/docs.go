@@ -17,7 +17,6 @@ const docTemplate = `{
     "paths": {
         "/server": {
             "get": {
-                "description": "Get all servers",
                 "produces": [
                     "application/json"
                 ],
@@ -43,10 +42,83 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "server"
+                ],
+                "summary": "Create a new server",
+                "operationId": "create-server",
+                "parameters": [
+                    {
+                        "description": "Server data",
+                        "name": "server",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/server.createServerDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Server created successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
             }
         }
     },
     "definitions": {
+        "server.createServerDto": {
+            "type": "object",
+            "properties": {
+                "engine": {
+                    "default": "vanilla",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/shared.MinecraftEngine"
+                        }
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "default": "example-minecraft-server"
+                },
+                "port": {
+                    "type": "integer",
+                    "default": 25565
+                },
+                "seed": {
+                    "type": "string",
+                    "default": "example-seed"
+                },
+                "version": {
+                    "type": "string",
+                    "default": "1.16.5"
+                }
+            }
+        },
         "shared.MinecraftEngine": {
             "type": "string",
             "enum": [
@@ -62,19 +134,32 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "docker_id": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "af5bb532db04"
                 },
                 "engine": {
-                    "$ref": "#/definitions/shared.MinecraftEngine"
+                    "default": "vanilla",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/shared.MinecraftEngine"
+                        }
+                    ]
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "My Server"
                 },
                 "port": {
-                    "type": "string"
+                    "type": "integer",
+                    "default": 25565
                 },
                 "seed": {
-                    "type": "string"
+                    "type": "string",
+                    "default": "example-seed"
+                },
+                "version": {
+                    "type": "string",
+                    "default": "1.16.5"
                 }
             }
         },
@@ -82,7 +167,8 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "running": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 },
                 "server_instance": {
                     "$ref": "#/definitions/shared.ServerInstance"

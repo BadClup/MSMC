@@ -2,19 +2,13 @@ package server
 
 import (
 	"backend/shared"
-	"encoding/json"
 	"fmt"
 	"os"
 )
 
 func getAllServers() ([]shared.ServerInstanceStatus, error) {
-	file, err := os.ReadFile(shared.InstancesPath)
+	servers, err := shared.ReadServerInstances()
 	if err != nil {
-		return nil, err
-	}
-
-	var servers []shared.ServerInstance
-	if err := json.Unmarshal(file, &servers); err != nil {
 		return nil, err
 	}
 
@@ -24,12 +18,12 @@ func getAllServers() ([]shared.ServerInstanceStatus, error) {
 	}
 
 	serversStatus := make([]shared.ServerInstanceStatus, len(servers))
-	for _, server := range servers {
+	for i, server := range servers {
 		status, err := server.GetStatus()
 		if err != nil {
 			return nil, err
 		}
-		serversStatus = append(serversStatus, status)
+		serversStatus[i] = status
 	}
 
 	return serversStatus, nil
