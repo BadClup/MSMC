@@ -1,5 +1,24 @@
 basePath: /
 definitions:
+  server.createServerDto:
+    properties:
+      engine:
+        allOf:
+        - $ref: '#/definitions/shared.MinecraftEngine'
+        default: vanilla
+      name:
+        default: example-minecraft-server
+        type: string
+      port:
+        default: 25565
+        type: integer
+      seed:
+        default: example-seed
+        type: string
+      version:
+        default: 1.16.5
+        type: string
+    type: object
   shared.MinecraftEngine:
     enum:
     - vanilla
@@ -11,19 +30,29 @@ definitions:
   shared.ServerInstance:
     properties:
       docker_id:
+        default: af5bb532db04
         type: string
       engine:
-        $ref: '#/definitions/shared.MinecraftEngine'
+        allOf:
+        - $ref: '#/definitions/shared.MinecraftEngine'
+        default: vanilla
       name:
+        default: My Server
         type: string
       port:
-        type: string
+        default: 25565
+        type: integer
       seed:
+        default: example-seed
+        type: string
+      version:
+        default: 1.16.5
         type: string
     type: object
   shared.ServerInstanceStatus:
     properties:
       running:
+        default: false
         type: boolean
       server_instance:
         $ref: '#/definitions/shared.ServerInstance'
@@ -37,7 +66,6 @@ info:
 paths:
   /server:
     get:
-      description: Get all servers
       operationId: get-all-servers
       produces:
       - application/json
@@ -53,6 +81,35 @@ paths:
           schema:
             type: string
       summary: Get all servers
+      tags:
+      - server
+    post:
+      consumes:
+      - application/json
+      operationId: create-server
+      parameters:
+      - description: Server data
+        in: body
+        name: server
+        required: true
+        schema:
+          $ref: '#/definitions/server.createServerDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Server created successfully
+          schema:
+            type: string
+        "400":
+          description: Bad request
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Create a new server
       tags:
       - server
 swagger: "2.0"
