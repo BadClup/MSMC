@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"github.com/gofiber/fiber/v2"
 	"os"
 )
 
@@ -19,25 +20,24 @@ const (
 	ForgeEngine   MinecraftEngine = "forge"
 )
 
-type ApiError interface {
-	Error() string
-	Code() int
-}
-
-type apiErrImplementation struct {
+type ApiError struct {
 	err  error
 	code int
 }
 
-func (e apiErrImplementation) Error() string { return e.err.Error() }
-func (e apiErrImplementation) Code() int     { return e.code }
+func (e ApiError) IsNotNil() bool { return e.err != nil }
+func (e ApiError) Error() string  { return e.err.Error() }
+func (e ApiError) Code() int      { return e.code }
+func (e ApiError) Send(ctx *fiber.Ctx) error {
+	return ctx.Status(e.code).SendString(e.Error())
+}
 
 func ApiErrorFromString(s string, code int) ApiError {
-	return apiErrImplementation{err: errors.New(s), code: code}
+	return ApiError{err: errors.New(s), code: code}
 }
 
 func ApiErrorFromError(err error, code int) ApiError {
-	return apiErrImplementation{err: err, code: code}
+	return ApiError{err: err, code: code}
 }
 
 func ApiErrorInternal(err error) ApiError {

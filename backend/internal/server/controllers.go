@@ -27,9 +27,9 @@ func createServerController(ctx *fiber.Ctx) error {
 		return ctx.Status(400).SendString(err.Error())
 	}
 
-	err := createServer(dto)
-	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+	apiErr := createServer(dto)
+	if apiErr.IsNotNil() {
+		return apiErr.Send(ctx)
 	}
 
 	return ctx.SendString("Server created successfully")
