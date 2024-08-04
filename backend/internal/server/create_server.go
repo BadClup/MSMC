@@ -55,8 +55,20 @@ func (d *createServerDto) initializeEmpty() {
 	}
 }
 
-func createServer(dto createServerDto) error {
+func createServer(dto createServerDto) shared.ApiError {
 	dto.initializeEmpty()
+
+	instances, err := shared.ReadServerInstances()
+	if err != nil {
+		return shared.ApiErrorInternal(err)
+	}
+
+	for _, instance := range instances {
+		if instance.Name == dto.Name {
+			errMsg := fmt.Sprintf("server with name %s already exists", dto.Name)
+			return shared.ApiErrorFromString(errMsg, 400)
+		}
+	}
 
 	containerConfig := &container.Config{
 		Image: shared.DockerMinecraftImage,
@@ -93,12 +105,13 @@ func createServer(dto createServerDto) error {
 		containerId,
 	)
 	if err != nil {
-		return err
+		return shared.ApiErrorInternal(err)
 	}
 
 	serviceInstance := dto.intoServerInstance(mcContainer.ID)
 
-	return serviceInstance.SaveInInstancesList()
+	err = serviceInstance.SaveInInstancesList()
+	return shared.ApiErrorInternal(err)
 }
 
 func randStringBytes(n int) string {

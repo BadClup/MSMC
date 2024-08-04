@@ -3,6 +3,7 @@ package shared
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"os"
 )
 
@@ -17,6 +18,31 @@ const (
 	VanillaEngine MinecraftEngine = "vanilla"
 	ForgeEngine   MinecraftEngine = "forge"
 )
+
+type ApiError interface {
+	Error() string
+	Code() int
+}
+
+type apiErrImplementation struct {
+	err  error
+	code int
+}
+
+func (e apiErrImplementation) Error() string { return e.err.Error() }
+func (e apiErrImplementation) Code() int     { return e.code }
+
+func ApiErrorFromString(s string, code int) ApiError {
+	return apiErrImplementation{err: errors.New(s), code: code}
+}
+
+func ApiErrorFromError(err error, code int) ApiError {
+	return apiErrImplementation{err: err, code: code}
+}
+
+func ApiErrorInternal(err error) ApiError {
+	return ApiErrorFromError(err, 500)
+}
 
 // ServerInstance default tag is used by swagger
 type ServerInstance struct {
