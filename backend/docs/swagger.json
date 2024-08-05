@@ -1,0 +1,173 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is MSMC API.",
+        "title": "MSMC API",
+        "contact": {},
+        "version": "0.1"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+        "/server": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "server"
+                ],
+                "summary": "Get all servers",
+                "operationId": "get-all-servers",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/shared.ServerInstanceStatus"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "server"
+                ],
+                "summary": "Create a new server",
+                "operationId": "create-server",
+                "parameters": [
+                    {
+                        "description": "Server data",
+                        "name": "server",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/server.createServerDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Server created successfully",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "server.createServerDto": {
+            "type": "object",
+            "properties": {
+                "engine": {
+                    "default": "vanilla",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/shared.MinecraftEngine"
+                        }
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "default": "example-minecraft-server"
+                },
+                "port": {
+                    "type": "integer",
+                    "default": 25565
+                },
+                "seed": {
+                    "type": "string",
+                    "default": "example-seed"
+                },
+                "version": {
+                    "type": "string",
+                    "default": "1.16.5"
+                }
+            }
+        },
+        "shared.MinecraftEngine": {
+            "type": "string",
+            "enum": [
+                "vanilla",
+                "forge"
+            ],
+            "x-enum-varnames": [
+                "VanillaEngine",
+                "ForgeEngine"
+            ]
+        },
+        "shared.ServerInstance": {
+            "type": "object",
+            "properties": {
+                "docker_id": {
+                    "type": "string",
+                    "default": "af5bb532db04"
+                },
+                "engine": {
+                    "default": "vanilla",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/shared.MinecraftEngine"
+                        }
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "default": "My Server"
+                },
+                "port": {
+                    "type": "integer",
+                    "default": 25565
+                },
+                "seed": {
+                    "type": "string",
+                    "default": "example-seed"
+                },
+                "version": {
+                    "type": "string",
+                    "default": "1.16.5"
+                }
+            }
+        },
+        "shared.ServerInstanceStatus": {
+            "type": "object",
+            "properties": {
+                "running": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "server_instance": {
+                    "$ref": "#/definitions/shared.ServerInstance"
+                }
+            }
+        }
+    }
+}
