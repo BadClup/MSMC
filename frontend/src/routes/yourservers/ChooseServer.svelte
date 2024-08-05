@@ -31,7 +31,7 @@
     .serverOption{
         display: inline-block;
         height: 100px;
-        width: 500px;
+        width: 540px;
         border: dotted black 3px;
         position: relative;
         left: 0px;

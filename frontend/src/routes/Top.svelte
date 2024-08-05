@@ -5,7 +5,7 @@
 </script>
 <style>
     #Top{
-        height: 8%;
+        height: 9%;
         width: 100vw;
         box-sizing: border-box;
         display: flex;
@@ -19,7 +19,7 @@
         font-weight: bolder;
         background-color: rgb(40,40,40);
         color: rgb(240,240,240);
-        padding-top: 8px;
+        padding-top: 4px;
         padding-right: 40px;
         padding-left: 30px;
         box-sizing: border-box;
@@ -33,7 +33,7 @@
         font-size: 1em;
         background-color: rgb(40,40,40);
         color: rgb(240,240,240);
-        padding-top: 13px;
+        padding-top: 12px;
         padding-right: 40px;
         padding-left: 30px;
         box-sizing: border-box;
@@ -45,7 +45,7 @@
         width: 50px;
         height: 50px;
         position: relative;
-        top: 8px;
+        top: 10px;
     }
 
     button{

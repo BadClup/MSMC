@@ -1,7 +1,7 @@
 <script lang="ts">
     import Top from "./../Top.svelte";
     import Footer from "./../Footer.svelte";
-    import Switch from "./../Switch.svelte";
+    import OptionsList from "./optionsList.svelte";
 </script>
 <style>
     #container{
@@ -11,88 +11,82 @@
         box-sizing: border-box;
         padding: 0;
         background-color: rgb(88, 88, 88);
+        color: white;
     }
 
-    #options{
+    #container2{
+        width: 100%;
+        flex: 1;
+    }
+
+    #listContainer{
+        display: inline-block;
+        float: left;
+        height: 100%;
+        width: 220px;
+    }
+
+    #settings{
         display: inline-block;
         box-sizing: border-box;
-        width: 220px;
         height: 100%;
-        padding: 0;
-        background-color: rgb(129, 155, 182);
+        width: calc(100% - 220px);
+        float: right;
+        padding-top: 15px;
+        flex: 1;
+    }
+
+    h1{
+        position: relative;
+        text-align: center;
+        font-weight: bold;
+        font-size: 50px;
+        color: inherit;
+    }
+
+    .infoContainer{
+        margin-left: 60px;
     }
     
-    #statusMargin{
-        height: 100%;
-        width: 11px;
-        background-color: navy;
-        box-sizing: border-box;
+    .label{
         display: inline-block;
+        font-size: 25px;
+        color: inherit;
+        border-radius: 3px;
+        background-color: rgb(32, 129, 226);
+        padding: 3px;
+        padding-bottom: 0;
     }
-
-    #statusContainer{
-        width: 100%;
-        height: 140px;
-        background-color: rgb(59, 59, 207);
+    
+    .info{
         display: inline-block;
-        box-sizing: border-box;
-        margin: 0;
-        text-align: left;
-    }
-
-    #status{
-        display: inline-block;
-        box-sizing: border-box;
-        text-align: left;
-        position: relative;
-        bottom: 80px;
-    }
-
-    ul{
-        margin: 0;
-        padding: 0;
-        border-bottom: solid 1px black;
-    }
-
-    li{
-        display: inline-block;
-        list-style-type: none; 
-        padding: 0; 
-        margin: 0; 
-        box-sizing: border-box;
-        text-align: center;
-        width: 100%;
-        height: 80px;
-        background-color: rgb(129, 155, 182);
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        border: solid 1px black;
-        padding-top: 25px;
+        font-size: 25px;
+        color: black;
+        border-radius: 2px;
+        background-color: white;
+        padding: 3px;
+        padding-bottom: 0;
+        width: 340px;
     }
 </style>
 
 <div id="container">
     <Top logout={true}/>
-    <div id="options">
-        <div id="statusContainer">
-            <div id="statusMargin"></div>
-            <div id="status">
-                Nazwa<br>
-                Wersja<br>
-                Autor
-            </div>
-            <Switch/>
+    <div id="container2">
+        <div id="listContainer">
+            <OptionsList name={"name"} version={"version"} author={"author"}/>
         </div>
-        <ul>
-            <li>Settings</li><br>
-            <li>Console</li><br>
-            <li>Logs</li><br>
-            <li>Players</li><br>
-            <li>World</li><br>
-            <li>Backups</li><br>
-            <li>Access</li><br>
-        </ul>
+        <div id="settings">
+            <h1>Server name</h1><br>
+            <div class="infoContainer">
+                <div class="label">Engine</div><br>
+                <div class="info"> Engine info</div>
+            </div><br><br>
+            <div class="infoContainer">
+                <div class="label">Game version</div><br>
+                <div class="info"> Version info</div>
+            </div>
+        </div>
     </div>
     <Footer/>
 </div>
