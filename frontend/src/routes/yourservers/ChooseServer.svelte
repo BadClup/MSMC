@@ -1,6 +1,6 @@
 <script lang="ts">
-    import icon from '$lib/images/plus.png';
-    import Switch from "../Switch.svelte";
+    import plus from '$lib/images/plus.svg';
+    import Switch from "../../lib/components/Switch.svelte";
     import { Modal } from '@svelteuidev/core';
     let opened = false;
 
@@ -155,7 +155,7 @@
         </div><br>
     {/each}
     <button on:click={() => (opened = true)}>
-        <img src={icon} alt="Cannot load a graphic">
+        <img src={plus} alt="Cannot load a graphic">
         <p>Add a server<p>
     </button>
 </div>

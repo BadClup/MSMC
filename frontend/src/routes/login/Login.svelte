@@ -53,8 +53,8 @@
 
     input[type="submit"]{
         background-color: rgb(82, 192, 67);
-        width: 160px;
-        margin-left: 50px;
+        width: 200px;
+        margin-left: 30px;
     }
 
     input[type="checkbox"]{

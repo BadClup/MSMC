@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Switch from "./../Switch.svelte";
+    import Switch from "../../lib/components/Switch.svelte";
     export let name = "Failed to load name";
     export let version = "Failed to load version information";
     export let author = "Failed to load author information";
