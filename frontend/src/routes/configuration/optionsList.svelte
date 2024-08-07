@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Switch from "../../lib/components/Switch.svelte";
+    import Switch from "$lib/components/Switch.svelte";
     export let name = "Failed to load name";
     export let version = "Failed to load version information";
     export let author = "Failed to load author information";
@@ -90,13 +90,13 @@
         </div> 
     </div>
     <ul>
-        <li><a href="/serverConfiguration">Server</a></li><br>
-        <li><a href="/serverConfiguration/settings">Settings</a></li><br>
-        <li><a href="/serverConfiguration/console">Console</a></li><br>
-        <li><a href="/serverConfiguration/logs">Logs</a></li><br>
-        <li><a href="/serverConfiguration/players">Players</a></li><br>
-        <li><a href="/serverConfiguration/world">World</a></li><br>
-        <li><a href="/serverConfiguration/backups">Backups</a></li><br>
-        <li><a href="/serverConfiguration/access">Access</a></li><br>
+        <li><a href="/configuration">Server</a></li><br>
+        <li><a href="/configuration/settings">Settings</a></li><br>
+        <li><a href="/configuration/console">Console</a></li><br>
+        <li><a href="/configuration/logs">Logs</a></li><br>
+        <li><a href="/configuration/players">Players</a></li><br>
+        <li><a href="/configuration/world">World</a></li><br>
+        <li><a href="/configuration/backups">Backups</a></li><br>
+        <li><a href="/configuration/access">Access</a></li><br>
     </ul>
 </div>

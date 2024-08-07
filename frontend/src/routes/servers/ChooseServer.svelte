@@ -145,7 +145,7 @@
     {#each servers as server}
         <div class="serverOption">
             <div class="serverInfo">
-                <a href="../serverConfiguration">
+                <a href="../configuration">
                     {server.name}<br>Server version: {server.version}
                 </a>
             </div>

@@ -1,6 +1,6 @@
 <script>
-    import Top from "./Top.svelte";
-    import Footer from "./Footer.svelte";
+    import Top from "../lib/components/Top.svelte";
+    import Footer from "../lib/components/Footer.svelte";
 </script>
 <style>
     #container{

@@ -117,5 +117,5 @@
     </div>
     <img src={logo} alt="Logo isn't working"><br>
     <a href="">Help, I cannot log in</a><br>
-    <a href="../yourservers">Skip</a>
+    <a href="../servers">Skip</a>
 </div>

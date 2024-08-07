@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Top from "../../lib/components/Top.svelte";
-    import Footer from "../../lib/components/Footer.svelte";
+    import Top from "$lib/components/Top.svelte";
+    import Footer from "$lib/components/Footer.svelte";
     import OptionsList from "./optionsList.svelte";
 </script>
 <style>
@@ -63,7 +63,7 @@
         font-size: 25px;
         color: black;
         border-radius: 2px;
-        background-color: white;
+        background-color: rgb(231, 231, 231);
         padding: 3px;
         padding-bottom: 0;
         width: 340px;
