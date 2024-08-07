@@ -77,6 +77,10 @@
             <div class="option">
                 <div class="textContainer">Option 1</div>
                 <div class="switchContainer"><Switch/></div>
+            </div><br>
+            <div class="option">
+                <div class="textContainer">Option 2</div>
+                <div class="switchContainer"><Switch/></div>
             </div>
         </div>
     </div>

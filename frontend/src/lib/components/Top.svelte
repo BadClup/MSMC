@@ -44,7 +44,7 @@
         width: 50px;
         height: 50px;
         position: relative;
-        top: 10px;
+        top: 11px;
     }
 
     button{
