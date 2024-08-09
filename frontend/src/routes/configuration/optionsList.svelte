@@ -8,19 +8,10 @@
     #optionsList{
         display: inline-block;
         box-sizing: border-box;
-        width: 220px;
+        width: 240px;
         height: 100%;
         padding: 0;
         background-color: rgb(129, 155, 182);
-    }
-    
-    #statusMargin{
-        height: 100%;
-        width: 11px;
-        background-color: navy;
-        box-sizing: border-box;
-        display: inline-block;
-        margin: 0;
     }
 
     #statusContainer{
@@ -33,7 +24,17 @@
         text-align: left;
     }
 
+    #statusMargin{
+        height: 100%;
+        width: 11px;
+        background-color: navy;
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 0;
+    }
+
     #status{
+        height: 100%;
         display: inline-block;
         box-sizing: border-box;
         text-align: left;
@@ -41,6 +42,17 @@
         bottom: 50px;
         margin: 0;
         padding-left: 4px;
+        font-size: 18px;
+    }
+
+    #switchContainer{
+        display: block;
+        height: 100%;
+        width: 60px;
+        text-align: right;
+        float: right;
+        padding-top: 53px;
+        padding-right: 6px;
     }
 
     ul{
@@ -86,8 +98,8 @@
             Name: {name}<br>
             Version: {version}<br>
             Author: {author}
-            <Switch/>
         </div> 
+        <div id="switchContainer"><Switch/></div>
     </div>
     <ul>
         <li><a href="/configuration">Server</a></li><br>

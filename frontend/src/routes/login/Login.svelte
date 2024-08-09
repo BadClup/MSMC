@@ -73,7 +73,7 @@
     #pause{
         font-size: 26px;
         font-weight: bolder;
-        color: rgb(38, 190, 7);
+        color: rgb(34, 196, 2);
         margin:auto;
         padding-left: 6px;
         margin-top: 6px;
@@ -116,6 +116,6 @@
         </form>
     </div>
     <img src={logo} alt="Logo isn't working"><br>
-    <a href="">Help, I cannot log in</a><br>
+    <a href="../login">Help, I cannot log in</a><br>
     <a href="../servers">Skip</a>
 </div>

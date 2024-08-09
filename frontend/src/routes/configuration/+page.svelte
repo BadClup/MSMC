@@ -23,14 +23,14 @@
         display: inline-block;
         float: left;
         height: 100%;
-        width: 220px;
+        width: 240px;
     }
 
     #settings{
         display: inline-block;
         box-sizing: border-box;
         height: 100%;
-        width: calc(100% - 220px);
+        width: calc(100% - 240px);
         float: right;
         padding-top: 15px;
         flex: 1;
