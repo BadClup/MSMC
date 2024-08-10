@@ -4,7 +4,7 @@
     import OptionsList from "./../optionsList.svelte";
 </script>
 <style>
-    #container{
+    section{
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -14,7 +14,7 @@
         color: white;
     }
 
-    #container2{
+    section > div{
         width: 100%;
         flex: 1;
     }
@@ -63,9 +63,9 @@
 
 </style>
 
-<div id="container">
-    <Top logout={true}/>
-    <div id="container2">
+<section>
+    <Top showServers={true} canLogout={true}/>
+    <div>
         <div id="listContainer">
             <OptionsList name={"name"} version={"version"} author={"author"}/>
         </div>
@@ -75,4 +75,4 @@
         </div>
     </div>
     <Footer/>
-</div>
+</section>

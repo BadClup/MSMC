@@ -18,7 +18,7 @@
 </script>
 
 <style>
-    .chooseServer{
+    section{
         padding-top: 40px;
         text-align: Center;
         font-size: 50px;
@@ -89,10 +89,14 @@
         text-align: center;
     }
 
-    input{
-        width: 360px;
-        height: 25px;
+    input[type="text"], input[type="submit"]{
+        box-sizing: border-box;
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
         padding-left: 10px;
+        font-size: 16px;
+        margin-top: 10px;
     }
 
     #submit{
@@ -140,7 +144,7 @@
     </form>
 </Modal>
 
-<div class="chooseServer">
+<section>
     <b>Your Servers</b><br><br>
     {#each servers as server}
         <div class="serverOption">
@@ -158,4 +162,4 @@
         <img src={plus} alt="Cannot load a graphic">
         <p>Add a server<p>
     </button>
-</div>
+</section>

@@ -4,7 +4,7 @@
     let opened = false;
 </script>
 <style>
-    #container{
+    section{
         width: 100vw;
         font-size: 2em;
         background-color: rgb(88, 88, 88);
@@ -51,7 +51,7 @@
         width: 100%;
     }
 
-    input[type="submit"]{
+    #submit{
         background-color: rgb(82, 192, 67);
         width: 200px;
         margin-left: 30px;
@@ -92,14 +92,28 @@
         font-size: 20px;
         color: rgb(103, 20, 247)
     }
+
+    h1{
+        margin: auto;
+        text-align: center;
+    }
 </style>
 
 <Modal {opened} id="modal" target={"body"} on:close={() => (opened = false)}>
-    <h1>Create new account</h1>
-    
+    <h1>Create new account</h1><br>
+    <form method="post" action="">
+        <label for="name">Login:</label><br>
+        <input type="text" id="login" name="login"><br><br>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password"><br><br>
+        <label for="password2">Repeat password:</label><br>
+        <input type="text" id="password2" name="password2"><br><br>
+        
+        <input type="submit" id="create" name="create" value="Create">
+    </form>
 </Modal>
 
-<div id="container">
+<section>
     <div id="formContainer">
         <button id="register" on:click={() => (opened = true)}>Register</button><br>
         <div id="pause">
@@ -118,4 +132,4 @@
     <img src={logo} alt="Logo isn't working"><br>
     <a href="../login">Help, I cannot log in</a><br>
     <a href="../servers">Skip</a>
-</div>
+</section>
