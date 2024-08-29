@@ -97,18 +97,36 @@
         margin: auto;
         text-align: center;
     }
+
+    #modalForm{
+        display: inline-block;
+        width: 88%;
+        height: 80%;
+        margin-left: 38px;
+    }
+
+    #newLogin, #newPassword, #newPassword2{
+        box-sizing: border-box;
+        width: 90%;
+        height: 40px;
+        border-radius: 5px;
+        padding-left: 10xp;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    #create{
+        width: 180px;
+        margin-left: 70px;
+    }
 </style>
 
 <Modal {opened} id="modal" target={"body"} on:close={() => (opened = false)}>
     <h1>Create new account</h1><br>
-    <form method="post" action="">
-        <label for="name">Login:</label><br>
-        <input type="text" id="login" name="login"><br><br>
-        <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password"><br><br>
-        <label for="password2">Repeat password:</label><br>
-        <input type="text" id="password2" name="password2"><br><br>
-        
+    <form method="post" action="" id="modalForm">
+        <input type="text" id="newLogin" name="newlogin" placeholder="Enter your login"><br><br>
+        <input type="password" id="newPassword" name="newpassword" placeholder="Enter your password"><br><br>
+        <input type="password" id="newPassword2" name="newpassword2" placeholder="Repeat your password"><br><br>
         <input type="submit" id="create" name="create" value="Create">
     </form>
 </Modal>

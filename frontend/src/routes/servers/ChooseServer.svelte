@@ -89,21 +89,22 @@
         text-align: center;
     }
 
-    input[type="text"], input[type="submit"]{
+    input[type="text"], input[type="submit"], input[list]{
         box-sizing: border-box;
-        width: 100%;
+        width: 90%;
         height: 40px;
         border-radius: 5px;
         padding-left: 10px;
         font-size: 16px;
         margin-top: 10px;
+        margin-left: 16px;
     }
 
     #submit{
-        margin-left: 150px;
+        margin-left: 110px;
         position: relative;
         top: 10px;
-        width: 100px;
+        width: 180px;
         height: 40px;
     }
 
@@ -118,23 +119,19 @@
 <Modal {opened} id="modal" target={"body"} on:close={() => (opened = false)}>
     <h1>Add a new server</h1>
     <form method="post" action="">
-        <label for="name">Server name:</label><br>
-        <input type="text" id="name" name="name"><br><br>
-        <label for="mcVersion">Server version:</label><br>
-        <input list="mcVersionlist" name="mcVersion" id="mcVersion">
+        <input type="text" id="name" name="name" placeholder="Server name"><br><br>
+        <input list="mcVersionlist" name="mcVersion" id="mcVersion" placeholder="Minecraft version">
             <datalist id="mcVersionlist">
                 <option value="1.20">
                 <option value="1.19">
             </datalist><br><br>
-        <label for="engine">Game engine:</label><br>
-        <input list="engineList" name="engine" id="engine">
+        <input list="engineList" name="engine" id="engine" placeholder="Game engine">
             <datalist id="engineList">
                 <option value="Vanilla">
                 <option value="Forge">
                 <option value="Fabric">
             </datalist><br><br>
-        <label for="engineVersion">Engine version:</label><br>
-        <input list="engineVersionlist" name="engineVersion" id="engineVersion">
+        <input list="engineVersionlist" name="engineVersion" id="engineVersion" placeholder="Engine version">
             <datalist id="engineVersionlist">
                 <option value="engineVersion">
                 <option value="engineVersion">
