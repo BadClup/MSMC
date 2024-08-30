@@ -64,7 +64,7 @@
 </style>
 
 <section>
-    <Top showServers={true} canLogout={true}/>
+    <Top showServers={true} isLoggedIn={true}/>
     <div>
         <div id="listContainer">
             <OptionsList name={"name"} version={"version"} author={"author"}/>

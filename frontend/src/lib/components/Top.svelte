@@ -1,6 +1,6 @@
 <script>
     import logo from '$lib/images/logo.svg';
-    export let canLogout = false;
+    export let isLoggedIn = false;
     export let showServers = false;
 </script>
 <style>
@@ -88,7 +88,7 @@
             <button id="servers">Servers</button>
         {/if}
         &nbsp&nbsp&nbsp&nbsp
-        {#if canLogout == true}
+        {#if isLoggedIn == true}
             <button id="logout">Log out</button>
         {/if}
     </div>

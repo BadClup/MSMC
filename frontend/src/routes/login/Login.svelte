@@ -26,6 +26,7 @@
         display: inline-block;
         width: 260px;
         height: 40%;
+        position: relative;
     }
 
     img{
@@ -96,6 +97,9 @@
     h1{
         margin: auto;
         text-align: center;
+        position: relative;
+        bottom: 35px;
+        bottom: 15px;
     }
 
     #modalForm{
@@ -116,38 +120,40 @@
     }
 
     #create{
-        width: 180px;
-        margin-left: 70px;
+        width: 200px;
+        height: 50px;
+        margin-left: 60px;
+        margin-top: 30px;
     }
 </style>
 
 <Modal {opened} id="modal" target={"body"} on:close={() => (opened = false)}>
-    <h1>Create new account</h1><br>
+    <h1>Create new account</h1>
     <form method="post" action="" id="modalForm">
-        <input type="text" id="newLogin" name="newlogin" placeholder="Enter your login"><br><br>
-        <input type="password" id="newPassword" name="newpassword" placeholder="Enter your password"><br><br>
-        <input type="password" id="newPassword2" name="newpassword2" placeholder="Repeat your password"><br><br>
+        <input type="text" id="newLogin" name="newlogin" placeholder="Enter your login">
+        <input type="password" id="newPassword" name="newpassword" placeholder="Enter your password">
+        <input type="password" id="newPassword2" name="newpassword2" placeholder="Repeat your password">
         <input type="submit" id="create" name="create" value="Create">
     </form>
 </Modal>
 
 <section>
     <div id="formContainer">
-        <button id="register" on:click={() => (opened = true)}>Register</button><br>
+        <button id="register" on:click={() => (opened = true)}>Register</button>
         <div id="pause">
             <div id="line"></div>
             OR
             <div id="line"></div>
         </div>
         <form method="post">
-            <input type="text" id="login" name="login" placeholder="Login"><br>
-            <input type="password" id="password" name="password" placeholder="Password"><br>
+            <input type="text" id="login" name="login" placeholder="Login">
+            <input type="password" id="password" name="password" placeholder="Password">
             <input type="checkbox" id="if_remember" name="if_remember" value="RememberMe">
-            <label for="if_remember" style="font-size: 50%">Remember me</label><br>
-            <input type="submit" id="submit" name="submit" value="Submit"><br>
+            <label for="if_remember" style="font-size: 50%">Remember me</label>
+            <input type="submit" id="submit" name="submit" value="Submit">
         </form>
     </div>
     <img src={logo} alt="Logo isn't working"><br>
-    <a href="../login">Help, I cannot log in</a><br>
+    <a href="#">Help, I cannot log in</a><br>
     <a href="../servers">Skip</a>
 </section>

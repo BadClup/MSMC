@@ -75,7 +75,6 @@
         font-weight: bold;
         color: white;
         border: solid 1px black;
-        padding-top: 25px;
     }
 
     li:hover{
@@ -83,9 +82,10 @@
     }
 
     a{
-        display: inline-block;
+        display: block;
         width: 100%;
         height: 100%;
+        padding-top: 25px;
         text-decoration: none;
         color: inherit;
     }
@@ -95,20 +95,20 @@
     <div>
         <div id="statusMargin"></div>
         <div id="status">
-            Name: {name}<br>
-            Version: {version}<br>
-            Author: {author}
+            <p>Name: {name}</p>
+            <p>Version: {version}</p>
+            <p>Author: {author}</p>
         </div> 
         <div id="switchWrapper"><Switch/></div>
     </div>
     <ul>
-        <li><a href="/configuration">Server</a></li><br>
-        <li><a href="/configuration/settings">Settings</a></li><br>
-        <li><a href="/configuration/console">Console</a></li><br>
-        <li><a href="/configuration/logs">Logs</a></li><br>
-        <li><a href="/configuration/players">Players</a></li><br>
-        <li><a href="/configuration/world">World</a></li><br>
-        <li><a href="/configuration/backups">Backups</a></li><br>
-        <li><a href="/configuration/access">Access</a></li><br>
+        <li><a href="/configuration">Server</a></li>
+        <li><a href="/configuration/settings">Settings</a></li>
+        <li><a href="/configuration/console">Console</a></li>
+        <li><a href="/configuration/logs">Logs</a></li>
+        <li><a href="/configuration/players">Players</a></li>
+        <li><a href="/configuration/world">World</a></li>
+        <li><a href="/configuration/backups">Backups</a></li>
+        <li><a href="/configuration/access">Access</a></li>
     </ul>
 </section>

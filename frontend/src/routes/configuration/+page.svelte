@@ -45,6 +45,7 @@
     }
 
     .infoContainer{
+        display: inline-block;
         margin-left: 60px;
     }
     
@@ -71,17 +72,17 @@
 </style>
 
 <section>
-    <Top showServers={true} canLogout={true}/>
+    <Top showServers={true} isLoggedIn={true}/>
     <div>
         <div id="listContainer">
             <OptionsList name={"name"} version={"version"} author={"author"}/>
         </div>
         <div id="settings">
-            <h1>Server name</h1><br>
+            <h1>Server name</h1>
             <div class="infoContainer">
                 <div class="label">Engine</div><br>
                 <div class="info"> Engine info</div>
-            </div><br><br>
+            </div>
             <div class="infoContainer">
                 <div class="label">Game version</div><br>
                 <div class="info"> Version info</div>

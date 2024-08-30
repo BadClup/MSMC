@@ -50,6 +50,7 @@
         width: 320px;
         height: 56px;
         margin-left: 50px;
+        margin-bottom: 20px;
         background-color: rgb(48, 48, 48);
     }
     
@@ -79,17 +80,17 @@
 </style>
 
 <section>
-    <Top showServers={true} canLogout={true}/>
+    <Top showServers={true} isLoggedIn={true}/>
     <div>
         <div id="listContainer">
             <OptionsList name={"name"} version={"version"} author={"author"}/>
         </div>
         <div id="settings">
-            <h1>Settings</h1><br>
+            <h1>Settings</h1>
             <div class="option">
                 <div class="textContainer">Option 1</div>
                 <div class="switchContainer"><Switch/></div>
-            </div><br>
+            </div>
             <div class="option">
                 <div class="textContainer">Option 2</div>
                 <input class="input" name="inpu1" type="number" step="1" min="1" max="10" value="1">
