@@ -1,10 +1,11 @@
 <script>
     import logo from '$lib/images/logo.svg';
-    export let logout = false;
+    export let isLoggedIn = false;
+    export let showServers = false;
 </script>
 <style>
     #Top{
-        height: 9%;
+        height: 85px;
         width: 100vw;
         box-sizing: border-box;
         display: flex;
@@ -32,7 +33,7 @@
         font-size: 1em;
         background-color: rgb(40,40,40);
         color: rgb(240,240,240);
-        padding-top: 12px;
+        padding-top: 16px;
         padding-right: 40px;
         padding-left: 30px;
         box-sizing: border-box;
@@ -57,15 +58,22 @@
         border: 0;
     }
 
-    #logout::before{
+    #logout::before, #servers::before{
         display: inline-block;
         width: 30px;
         height: 30px;
         background-size: 30px;
-        content: url($lib/images/logout.svg);
         position: relative;
         top: 7px;
         right: 8px;
+    }
+
+    #logout::before{
+        content: url($lib/images/logout.svg);
+    }
+
+    #servers::before{
+        content: url($lib/images/servers.svg);
     }
 </style>
 
@@ -76,7 +84,11 @@
     </div>
 
     <div id="right">
-        {#if logout == true}
+        {#if showServers == true}
+            <button id="servers">Servers</button>
+        {/if}
+        &nbsp&nbsp&nbsp&nbsp
+        {#if isLoggedIn == true}
             <button id="logout">Log out</button>
         {/if}
     </div>

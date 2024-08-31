@@ -5,25 +5,16 @@
     export let author = "Failed to load author information";
 </script>
 <style>
-    #optionsList{
+    section{
         display: inline-block;
         box-sizing: border-box;
-        width: 220px;
+        width: 240px;
         height: 100%;
         padding: 0;
         background-color: rgb(129, 155, 182);
     }
-    
-    #statusMargin{
-        height: 100%;
-        width: 11px;
-        background-color: navy;
-        box-sizing: border-box;
-        display: inline-block;
-        margin: 0;
-    }
 
-    #statusContainer{
+    section > div{
         width: 100%;
         height: 140px;
         background-color: rgb(59, 59, 207);
@@ -33,7 +24,17 @@
         text-align: left;
     }
 
+    #statusMargin{
+        height: 100%;
+        width: 11px;
+        background-color: navy;
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 0;
+    }
+
     #status{
+        height: 100%;
         display: inline-block;
         box-sizing: border-box;
         text-align: left;
@@ -41,6 +42,17 @@
         bottom: 50px;
         margin: 0;
         padding-left: 4px;
+        font-size: 18px;
+    }
+
+    #switchWrapper{
+        display: block;
+        height: 100%;
+        width: 60px;
+        text-align: right;
+        float: right;
+        padding-top: 53px;
+        padding-right: 6px;
     }
 
     ul{
@@ -63,7 +75,6 @@
         font-weight: bold;
         color: white;
         border: solid 1px black;
-        padding-top: 25px;
     }
 
     li:hover{
@@ -71,32 +82,33 @@
     }
 
     a{
-        display: inline-block;
+        display: block;
         width: 100%;
         height: 100%;
+        padding-top: 25px;
         text-decoration: none;
         color: inherit;
     }
 </style>
 
-<div id="optionsList">
-    <div id="statusContainer">
+<section>
+    <div>
         <div id="statusMargin"></div>
         <div id="status">
-            Name: {name}<br>
-            Version: {version}<br>
-            Author: {author}
-            <Switch/>
+            <p>Name: {name}</p>
+            <p>Version: {version}</p>
+            <p>Author: {author}</p>
         </div> 
+        <div id="switchWrapper"><Switch/></div>
     </div>
     <ul>
-        <li><a href="/configuration">Server</a></li><br>
-        <li><a href="/configuration/settings">Settings</a></li><br>
-        <li><a href="/configuration/console">Console</a></li><br>
-        <li><a href="/configuration/logs">Logs</a></li><br>
-        <li><a href="/configuration/players">Players</a></li><br>
-        <li><a href="/configuration/world">World</a></li><br>
-        <li><a href="/configuration/backups">Backups</a></li><br>
-        <li><a href="/configuration/access">Access</a></li><br>
+        <li><a href="/configuration">Server</a></li>
+        <li><a href="/configuration/settings">Settings</a></li>
+        <li><a href="/configuration/console">Console</a></li>
+        <li><a href="/configuration/logs">Logs</a></li>
+        <li><a href="/configuration/players">Players</a></li>
+        <li><a href="/configuration/world">World</a></li>
+        <li><a href="/configuration/backups">Backups</a></li>
+        <li><a href="/configuration/access">Access</a></li>
     </ul>
-</div>
+</section>

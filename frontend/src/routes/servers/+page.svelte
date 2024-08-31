@@ -13,7 +13,7 @@
 </style>
 
 <div id="container">
-    <Top logout={true}/>
+    <Top isLoggedIn={true}/>
     <ChooseServer/>
     <Footer/>
 </div>

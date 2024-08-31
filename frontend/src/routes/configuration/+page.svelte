@@ -4,7 +4,7 @@
     import OptionsList from "./optionsList.svelte";
 </script>
 <style>
-    #container{
+    section{
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -14,7 +14,7 @@
         color: white;
     }
 
-    #container2{
+    section > div{
         width: 100%;
         flex: 1;
     }
@@ -23,14 +23,14 @@
         display: inline-block;
         float: left;
         height: 100%;
-        width: 220px;
+        width: 240px;
     }
 
     #settings{
         display: inline-block;
         box-sizing: border-box;
         height: 100%;
-        width: calc(100% - 220px);
+        width: calc(100% - 240px);
         float: right;
         padding-top: 15px;
         flex: 1;
@@ -45,11 +45,13 @@
     }
 
     .infoContainer{
+        display: inline-block;
         margin-left: 60px;
+        width: 350px;
     }
     
     .label{
-        display: inline-block;
+        display: inline;
         font-size: 25px;
         color: inherit;
         border-radius: 3px;
@@ -70,23 +72,23 @@
     }
 </style>
 
-<div id="container">
-    <Top logout={true}/>
-    <div id="container2">
+<section>
+    <Top showServers={true} isLoggedIn={true}/>
+    <div>
         <div id="listContainer">
             <OptionsList name={"name"} version={"version"} author={"author"}/>
         </div>
         <div id="settings">
-            <h1>Server name</h1><br>
+            <h1>Server name</h1>
             <div class="infoContainer">
-                <div class="label">Engine</div><br>
+                <div class="label">Engine</div>
                 <div class="info"> Engine info</div>
-            </div><br><br>
+            </div>
             <div class="infoContainer">
-                <div class="label">Game version</div><br>
+                <div class="label">Game version</div>
                 <div class="info"> Version info</div>
             </div>
         </div>
     </div>
     <Footer/>
-</div>
+</section>
