@@ -54,7 +54,11 @@
         text-align: left;
     }
 
-    .serverInfo::first-line{
+    a > p{
+        margin: 0;
+    }
+
+    p.head{
         font-weight: Bold;
     }
 
@@ -76,7 +80,7 @@
         top: 4px;
     }
 
-    p{
+    button > p{
         display: inline-block;
         margin: 0;
         position: relative;
@@ -154,7 +158,8 @@
         <div class="serverOption">
             <div class="serverInfo">
                 <a href="../configuration">
-                    {server.name}<br>Server version: {server.version}
+                    <p class="head">{server.name}</p>
+                    <p>Server version: {server.version}</p>
                 </a>
             </div>
             <div style="float: right; position: relative; top: 33px; right: 15px">

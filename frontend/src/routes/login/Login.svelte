@@ -31,9 +31,11 @@
 
     img{
         display: inline-block;
-        width: 300px;
-        height: 300px;
+        width: 340px;
+        height: 340px;
         text-align: center;
+        position: relative;
+        bottom: 20px;
     }
 
     input[type="text"], input[type="password"] , input[type="submit"]{
@@ -156,9 +158,10 @@
             <input type="checkbox" id="if_remember" name="if_remember" value="RememberMe">
             <label for="if_remember" style="font-size: 50%">Remember me</label>
             <input type="submit" id="submit" name="submit" value="Submit">
+
+            <p><a href="#">Help, I cannot log in</a></p>
+            <p><a href="../servers">Skip</a></p>
         </form>
     </div>
-    <img src={logo} alt="Logo isn't working"><br>
-    <p><a href="#">Help, I cannot log in</a></p>
-    <p><a href="../servers">Skip</a></p>
+    <img src={logo} alt="Logo isn't working">
 </section>
