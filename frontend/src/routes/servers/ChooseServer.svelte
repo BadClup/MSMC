@@ -34,13 +34,13 @@
     }
 
     .serverOption{
-        display: inline-block;
         height: 100px;
         width: 540px;
         border: dotted black 3px;
         position: relative;
         left: 0px;
-        margin-bottom: 15px;
+        margin: auto;
+        margin-bottom: 40px;
     }
 
     .serverInfo{
@@ -160,7 +160,7 @@
             <div style="float: right; position: relative; top: 33px; right: 15px">
                 <Switch state={server.isOnline}/>
             </div>
-        </div><br>
+        </div>
     {/each}
     <button on:click={() => (opened = true)}>
         <img src={plus} alt="Cannot load a graphic">

@@ -125,6 +125,11 @@
         margin-left: 60px;
         margin-top: 30px;
     }
+
+    p{
+        box-sizing: border-box;
+        margin: 0;
+    }
 </style>
 
 <Modal {opened} id="modal" target={"body"} on:close={() => (opened = false)}>
@@ -154,6 +159,6 @@
         </form>
     </div>
     <img src={logo} alt="Logo isn't working"><br>
-    <a href="#">Help, I cannot log in</a><br>
-    <a href="../servers">Skip</a>
+    <p><a href="#">Help, I cannot log in</a></p>
+    <p><a href="../servers">Skip</a></p>
 </section>

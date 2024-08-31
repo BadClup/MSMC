@@ -47,10 +47,11 @@
     .infoContainer{
         display: inline-block;
         margin-left: 60px;
+        width: 350px;
     }
     
     .label{
-        display: inline-block;
+        display: inline;
         font-size: 25px;
         color: inherit;
         border-radius: 3px;
@@ -80,11 +81,11 @@
         <div id="settings">
             <h1>Server name</h1>
             <div class="infoContainer">
-                <div class="label">Engine</div><br>
+                <div class="label">Engine</div>
                 <div class="info"> Engine info</div>
             </div>
             <div class="infoContainer">
-                <div class="label">Game version</div><br>
+                <div class="label">Game version</div>
                 <div class="info"> Version info</div>
             </div>
         </div>
