@@ -1,0 +1,6 @@
+# go binaries outputs:
+auth-server
+main
+
+# ide:
+.idea/
