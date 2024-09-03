@@ -1,4 +1,4 @@
-package server
+package mcserver
 
 import (
 	"github.com/gofiber/fiber/v2"

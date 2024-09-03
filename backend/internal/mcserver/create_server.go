@@ -1,4 +1,4 @@
-package server
+package mcserver
 
 import (
 	"backend/shared"

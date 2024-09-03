@@ -14,7 +14,7 @@ import (
 	"os"
 )
 
-//	@title			MSMC auth server API
+//	@title			MSMC auth API
 //	@version		0.1
 //	@description	This is the auth server for MSMC
 
