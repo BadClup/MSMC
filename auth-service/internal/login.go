@@ -24,7 +24,7 @@ type loginDto struct {
 //	@Param email body string false "Email"
 //	@Param username body string false "Username"
 //	@Param password body string true "Password"
-//	@Success 200 {object} object{token=string}
+//	@Success 200 {object} tokenResponse
 //	@Router /login [post]
 func LoginController(ctx *fiber.Ctx) error {
 	var payload loginDto
@@ -55,8 +55,8 @@ func LoginController(ctx *fiber.Ctx) error {
 		})
 	}
 
-	return ctx.JSON(fiber.Map{
-		"token": token,
+	return ctx.JSON(tokenResponse{
+		Token: token,
 	})
 }
 

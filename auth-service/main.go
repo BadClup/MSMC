@@ -39,6 +39,7 @@ func main() {
 
 	app.Post("/register", internal.RegisterController)
 	app.Post("/login", internal.LoginController)
+	app.Post("/login-remote", internal.LoginRemoteController)
 
 	err = app.Listen(":3001")
 	handleErr(err, "Failed to start server on port 3000")

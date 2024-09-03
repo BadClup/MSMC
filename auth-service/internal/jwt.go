@@ -1,10 +1,15 @@
 package internal
 
 import (
+	"errors"
 	"github.com/dgrijalva/jwt-go"
 	"math"
 	"msmc/auth-service/shared"
 )
+
+type tokenResponse struct {
+	Token string `json:"token"`
+}
 
 type jwtPayload struct {
 	Exp      int64  `json:"exp"`
@@ -26,4 +31,29 @@ func signJwt(payload jwtPayload) (string, error) {
 	})
 
 	return token.SignedString([]byte(shared.JwtSecret))
+}
+
+func decodeJwt(tokenString string) (jwtPayload, error) {
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		return []byte(shared.JwtSecret), nil
+	})
+	if err != nil {
+		return jwtPayload{}, err
+	}
+
+	if !token.Valid {
+		return jwtPayload{}, errors.New("invalid token")
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok {
+		return jwtPayload{}, errors.New("invalid token claims")
+	}
+
+	return jwtPayload{
+		Exp:      int64(claims["exp"].(float64)),
+		Email:    claims["email"].(string),
+		Username: claims["username"].(string),
+		UserID:   int(claims["user_id"].(float64)),
+	}, nil
 }

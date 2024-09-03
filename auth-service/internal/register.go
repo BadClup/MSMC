@@ -43,8 +43,8 @@ func RegisterController(ctx *fiber.Ctx) error {
 		})
 	}
 
-	return ctx.JSON(fiber.Map{
-		"token": token,
+	return ctx.JSON(tokenResponse{
+		Token: token,
 	})
 }
 
