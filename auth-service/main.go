@@ -8,9 +8,9 @@ import (
 	"github.com/gofiber/swagger"
 	"github.com/jackc/pgx/v5"
 	"github.com/joho/godotenv"
-	_ "msmc/auth-server/docs"
-	"msmc/auth-server/internal"
-	"msmc/auth-server/shared"
+	_ "msmc/auth-service/docs"
+	"msmc/auth-service/internal"
+	"msmc/auth-service/shared"
 	"os"
 )
 
@@ -38,6 +38,7 @@ func main() {
 	app.Get("/swagger/*", swagger.HandlerDefault)
 
 	app.Post("/register", internal.RegisterController)
+	app.Post("/login", internal.LoginController)
 
 	err = app.Listen(":3001")
 	handleErr(err, "Failed to start server on port 3000")

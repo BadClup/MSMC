@@ -1,7 +1,7 @@
 version: "3.7"
 
 services:
-  auth-server:
+  auth-service:
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,7 +21,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: msmc-auth-server
+      POSTGRES_DB: msmc-auth-service
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
@@ -30,7 +30,7 @@ services:
     network_mode: host
     volumes:
       - ./migrations:/migrations
-    command: [ "-path", "/migrations", "-database",  "postgres://postgres:postgres@localhost:5432/msmc-auth-server?sslmode=disable", "up" ]
+    command: [ "-path", "/migrations", "-database",  "postgres://postgres:postgres@localhost:5432/msmc-auth-service?sslmode=disable", "up" ]
     depends_on:
       - postgres
 

@@ -6,6 +6,39 @@ info:
   title: MSMC auth server API
   version: "0.1"
 paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Login a user
+      parameters:
+      - description: Email
+        in: body
+        name: email
+        schema:
+          type: string
+      - description: Username
+        in: body
+        name: username
+        schema:
+          type: string
+      - description: Password
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            properties:
+              token:
+                type: string
+            type: object
+      summary: Login a user
   /register:
     post:
       consumes:

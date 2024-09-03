@@ -2,12 +2,18 @@ package internal
 
 import (
 	"context"
-	"github.com/dgrijalva/jwt-go"
+	"crypto/sha512"
 	"github.com/gofiber/fiber/v2"
 	"github.com/jackc/pgx/v5"
 	"math"
-	"msmc/auth-server/shared"
+	"msmc/auth-service/shared"
 )
+
+type registerDto struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	Username string `json:"username"`
+}
 
 // RegisterController swagger:
 //
@@ -42,21 +48,10 @@ func RegisterController(ctx *fiber.Ctx) error {
 	})
 }
 
-type registerDto struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
-	Username string `json:"username"`
-}
-
-type jwtPayload struct {
-	Email    string `json:"email"`
-	Username string `json:"username"`
-	UserID   int    `json:"user_id"`
-}
-
 // registerUser return jwt token
 func registerUser(db *pgx.Conn, dto registerDto) (string, error) {
-	// TODO: implement user registration
+	passwordHashed := sha512.New()
+	passwordHashed.Write([]byte(dto.Password))
 
 	var userId int
 
@@ -65,17 +60,15 @@ func registerUser(db *pgx.Conn, dto registerDto) (string, error) {
 		INSERT INTO "users" (email, username, password)
 		VALUES ($1, $2, $3)
 		RETURNING id
-	`, dto.Email, dto.Username, dto.Password).Scan(&userId)
+	`, dto.Email, dto.Username, passwordHashed.Sum(nil)).Scan(&userId)
 	if err != nil {
 		return "", err
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"exp":      math.MaxInt64,
-		"email":    dto.Email,
-		"username": dto.Username,
-		"user_id":  userId,
+	return signJwt(jwtPayload{
+		Exp:      math.MaxInt64,
+		Email:    dto.Email,
+		Username: dto.Username,
+		UserID:   userId,
 	})
-
-	return token.SignedString([]byte(shared.JwtSecret))
 }

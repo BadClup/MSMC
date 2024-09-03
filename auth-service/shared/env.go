@@ -15,7 +15,7 @@ var DatabaseUrl = func() string {
 		return pgUrl
 	}
 	warn("Using default database URL")
-	return "postgres://postgres:postgres@localhost:5432/msmc-auth-server"
+	return "postgres://postgres:postgres@localhost:5432/msmc-auth-service"
 }()
 
 var JwtSecret = func() string {

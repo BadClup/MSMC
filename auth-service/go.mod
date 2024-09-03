@@ -1,4 +1,4 @@
-module msmc/auth-server
+module msmc/auth-service
 
 go 1.21
 
