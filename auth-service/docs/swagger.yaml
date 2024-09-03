@@ -1,4 +1,10 @@
 basePath: /
+definitions:
+  internal.tokenResponse:
+    properties:
+      token:
+        type: string
+    type: object
 host: localhost:3001
 info:
   contact: {}
@@ -34,11 +40,34 @@ paths:
         "200":
           description: OK
           schema:
-            properties:
-              token:
-                type: string
-            type: object
+            $ref: '#/definitions/internal.tokenResponse'
       summary: Login a user
+  /login-remote:
+    post:
+      consumes:
+      - application/json
+      description: Login a user to remote server
+      parameters:
+      - description: Token
+        in: body
+        name: token
+        required: true
+        schema:
+          type: string
+      - description: URL
+        in: body
+        name: url
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal.tokenResponse'
+      summary: Login a user remotely
   /register:
     post:
       consumes:

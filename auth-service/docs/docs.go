@@ -56,12 +56,47 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "object",
-                            "properties": {
-                                "token": {
-                                    "type": "string"
-                                }
-                            }
+                            "$ref": "#/definitions/internal.tokenResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/login-remote": {
+            "post": {
+                "description": "Login a user to remote server",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Login a user remotely",
+                "parameters": [
+                    {
+                        "description": "Token",
+                        "name": "token",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "URL",
+                        "name": "url",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/internal.tokenResponse"
                         }
                     }
                 }
@@ -118,6 +153,16 @@ const docTemplate = `{
                             }
                         }
                     }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "internal.tokenResponse": {
+            "type": "object",
+            "properties": {
+                "token": {
+                    "type": "string"
                 }
             }
         }
