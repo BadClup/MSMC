@@ -1,9 +1,10 @@
 <script>
     import logo from '$lib/images/logo.svg';
-    export let logout = false;
+    export let isLoggedIn = false;
+    export let showServers = false;
 </script>
 <style>
-    #Top{
+    header{
         height: 9%;
         width: 100vw;
         box-sizing: border-box;
@@ -47,7 +48,7 @@
         top: 11px;
     }
 
-    button{
+    #logout, #servers{
         width: 120px;
         height: 30px;
         font-size: 20px;
@@ -55,6 +56,10 @@
         color: white;
         background-color: transparent;
         border: 0;
+    }
+
+    #servers{
+        margin-right: 20px;
     }
 
     #logout::before{
@@ -67,17 +72,31 @@
         top: 7px;
         right: 8px;
     }
+
+    #servers::before{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+        content: url($lib/images/servers.svg);
+        position: relative;
+        top: 7px;
+        right: 8px;
+    }
 </style>
 
-<div id="Top">
+<header>
     <div id="left">
         <img src={logo} alt="Logo isn't working">
         MSMC
     </div>
 
     <div id="right">
-        {#if logout == true}
+        {#if showServers == true}
+            <button id="servers">Log out</button>
+        {/if}
+        {#if isLoggedIn == true}
             <button id="logout">Log out</button>
         {/if}
     </div>
-</div>
+</header>

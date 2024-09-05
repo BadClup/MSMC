@@ -34,6 +34,7 @@
     }
 
     #status{
+        height: 90px;
         display: inline-block;
         box-sizing: border-box;
         text-align: left;
@@ -41,6 +42,16 @@
         bottom: 50px;
         margin: 0;
         padding-left: 4px;
+        font-size: 18px;
+    }
+
+    #switchWrapper{
+        display: block;
+        height: 34px;
+        width: 60px;
+        text-align: right;
+        float: right;
+        padding-top: 53px;
     }
 
     ul{
@@ -63,7 +74,6 @@
         font-weight: bold;
         color: white;
         border: solid 1px black;
-        padding-top: 25px;
     }
 
     li:hover{
@@ -76,6 +86,12 @@
         height: 100%;
         text-decoration: none;
         color: inherit;
+        padding-top: 25px;
+    }
+
+    p{
+        margin: 0;
+        padding: 0;
     }
 </style>
 
@@ -83,20 +99,20 @@
     <div id="statusContainer">
         <div id="statusMargin"></div>
         <div id="status">
-            Name: {name}<br>
-            Version: {version}<br>
-            Author: {author}
-            <Switch/>
+            <p>Name: {name}</p>
+            <p>Version: {version}</p>
+            <p>Author: {author}</p>
         </div> 
+        <div id="switchWrapper"><Switch/></div>
     </div>
     <ul>
-        <li><a href="/configuration">Server</a></li><br>
-        <li><a href="/configuration/settings">Settings</a></li><br>
-        <li><a href="/configuration/console">Console</a></li><br>
-        <li><a href="/configuration/logs">Logs</a></li><br>
-        <li><a href="/configuration/players">Players</a></li><br>
-        <li><a href="/configuration/world">World</a></li><br>
-        <li><a href="/configuration/backups">Backups</a></li><br>
-        <li><a href="/configuration/access">Access</a></li><br>
+        <li><a href="/configuration">Server</a></li>
+        <li><a href="/configuration/settings">Settings</a></li>
+        <li><a href="/configuration/console">Console</a></li>
+        <li><a href="/configuration/logs">Logs</a></li>
+        <li><a href="/configuration/players">Players</a></li>
+        <li><a href="/configuration/world">World</a></li>
+        <li><a href="/configuration/backups">Backups</a></li>
+        <li><a href="/configuration/access">Access</a></li>
     </ul>
 </div>
