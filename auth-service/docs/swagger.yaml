@@ -5,13 +5,58 @@ definitions:
       token:
         type: string
     type: object
+  internal.userInfoDto:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      username:
+        type: string
+    type: object
 host: localhost:3001
 info:
   contact: {}
   description: This is the auth server for MSMC
-  title: MSMC auth server API
+  title: MSMC auth API
   version: "0.1"
 paths:
+  /get-user-info:
+    post:
+      consumes:
+      - application/json
+      description: Get user info
+      parameters:
+      - description: ID
+        in: body
+        name: id
+        schema:
+          type: integer
+      - description: Email
+        in: body
+        name: email
+        schema:
+          type: string
+      - description: Username
+        in: body
+        name: username
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/internal.userInfoDto'
+        "404":
+          description: Not Found
+          schema:
+            properties:
+              error:
+                type: string
+            type: object
+      summary: Get user info
   /login:
     post:
       consumes:

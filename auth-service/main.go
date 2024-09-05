@@ -12,6 +12,7 @@ import (
 	"msmc/auth-service/internal"
 	"msmc/auth-service/shared"
 	"os"
+	"time"
 )
 
 //	@title			MSMC auth API
@@ -25,8 +26,7 @@ func main() {
 		log.Warn("Error loading .env file, using default values")
 	}
 
-	ctx := context.Background()
-	db, err := pgx.Connect(ctx, shared.DatabaseUrl)
+	db, err := dbConnect(10, 1000) // TODO: move these params to env
 	handleErr(err, "Failed to connect to database")
 
 	app := fiber.New()
@@ -37,12 +37,32 @@ func main() {
 
 	app.Get("/swagger/*", swagger.HandlerDefault)
 
+	app.Post("/get-user-info", internal.UserInfoController)
 	app.Post("/register", internal.RegisterController)
 	app.Post("/login", internal.LoginController)
 	app.Post("/login-remote", internal.LoginRemoteController)
 
 	err = app.Listen(":3001")
 	handleErr(err, "Failed to start server on port 3000")
+}
+
+// dbConnect - set maxAttempts to -1 for infinite attempts
+func dbConnect(maxAttempts int, delayMs int) (*pgx.Conn, error) {
+	var db *pgx.Conn
+	var err error
+
+	for i := 0; i < maxAttempts; i++ {
+		ctx := context.Background()
+		db, err = pgx.Connect(ctx, shared.DatabaseUrl)
+
+		if err == nil {
+			return db, err
+		}
+		fmt.Printf("Failed to connect to database, retrying in %d ms for the %d time\n", delayMs, i+1)
+		time.Sleep(time.Duration(delayMs) * time.Millisecond)
+	}
+
+	return nil, err
 }
 
 // only for top-level usage
