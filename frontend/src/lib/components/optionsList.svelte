@@ -8,7 +8,7 @@
     #optionsList{
         display: inline-block;
         box-sizing: border-box;
-        width: 220px;
+        width: 100%;
         height: 100%;
         padding: 0;
         background-color: rgb(129, 155, 182);
@@ -52,6 +52,7 @@
         text-align: right;
         float: right;
         padding-top: 53px;
+        padding-right: 5px;
     }
 
     ul{
@@ -70,7 +71,7 @@
         width: 100%;
         height: 80px;
         background-color: rgb(129, 155, 182);
-        font-size: 24px;
+        font-size: 25px;
         font-weight: bold;
         color: white;
         border: solid 1px black;

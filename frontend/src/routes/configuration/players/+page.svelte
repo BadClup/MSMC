@@ -1,7 +1,7 @@
 <script lang="ts">
     import Top from "$lib/components/Top.svelte";
     import Footer from "$lib/components/Footer.svelte";
-    import OptionsList from "./../optionsList.svelte";
+    import OptionsList from "$lib/components/optionsList.svelte";
 
     interface Player{
         name: string;
@@ -45,13 +45,12 @@
         padding-top: 35px;
     }
 
-    section > a{
+    a{
         box-sizing: border-box;
         height: 100px;
         margin-top: 60px;
         margin-right: 40px;
         padding-top: 30px;
-        background-color: red;
         text-decoration: none;
         font-weight: bold;
         font-size: 30px;
@@ -59,10 +58,26 @@
         text-align: center;
     }
 
-    .playersContainer{
+    .green{
+        background-color: green;
+    }
+
+    .green:hover{
+        background-color: rgb(26, 168, 26);
+    }
+
+    .red{
+        background-color: rgb(218, 0, 0);
+    }
+
+    .red:hover{
+        background-color: rgb(255, 0, 0);
+    }
+
+    main{
         display: inline-block;
         padding: 3%;
-        width: calc(100% - 690px)
+        width: calc(100% - 690px);
     }
 
     .playerWrapper{
@@ -106,7 +121,7 @@
     <Top showServers={true} isLoggedIn={true}/>
     <div>
         <nav><OptionsList name={"name"} version={"version"} author={"author"}/></nav>
-        <div class="playersContainer">
+        <main>
             {#each players as player}
                 <div class="playerWrapper">
                     <div class="playerInfo">{player.name}</div>
@@ -118,12 +133,12 @@
                     </div>
                 </div>
             {/each}
-        </div>
+        </main>
         <section>
-            <a href="#" style="background-color: green">Whitelist</a>
-            <a href="#" style="background-color: green">Operators</a>
-            <a href="#" style="background-color: red">Banned players</a>
-            <a href="#" style="background-color: red">Banned IP's</a>
+            <a href="/configuration/players/whitelist" class="green">Whitelist</a>
+            <a href="#" class="green">Operators</a>
+            <a href="#" class="red">Banned players</a>
+            <a href="#" class="red">Banned IP's</a>
         </section>
     </div>
     <Footer/>

@@ -1,7 +1,7 @@
 <script lang="ts">
     import Top from "$lib/components/Top.svelte";
     import Footer from "$lib/components/Footer.svelte";
-    import OptionsList from "./optionsList.svelte";
+    import OptionsList from "$lib/components/optionsList.svelte";
 </script>
 <style>
     section{

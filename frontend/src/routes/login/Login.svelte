@@ -16,7 +16,7 @@
         padding-top: 10%;
     }
  
-    #formContainer{
+    main{
         width: 270px;
         display: inline-block;
         margin-right: 30px;
@@ -145,7 +145,7 @@
 </Modal>
 
 <section>
-    <div id="formContainer">
+    <main>
         <button id="register" on:click={() => (opened = true)}>Register</button>
         <div id="pause">
             <div id="line"></div>
@@ -162,6 +162,6 @@
             <p><a href="#">Help, I cannot log in</a></p>
             <p><a href="../servers">Skip</a></p>
         </form>
-    </div>
+    </main>
     <img src={logo} alt="Logo isn't working">
 </section>
