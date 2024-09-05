@@ -1,18 +1,21 @@
 package internal
 
 import (
+	"backend/shared"
 	"errors"
+	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
 	"math"
+	"strings"
 )
 
-type jwtPayload struct {
-	Exp    int64 `json:"exp"`
+type JwtPayload struct {
+	Exp    int64 `json:"ExpiresAt"`
 	UserID int   `json:"user_id"`
 }
 
-type loginRemoteDto struct {
+type LoginRemoteDto struct {
 	UserId int `json:"user_id"`
 }
 
@@ -29,24 +32,26 @@ type loginRemoteDto struct {
 //	@Failure 401 {object} object{error=string}
 //	@Router /login-remote [post]
 func LoginRemoteController(ctx *fiber.Ctx) error {
-	var dto loginRemoteDto
+	var dto LoginRemoteDto
+
+	hostnameWithoutPort := ctx.Hostname()
+	hostnameWithoutPort = strings.Split(hostnameWithoutPort, ":")[0]
 
 	// Validate if request comes from authorized server:
-	// TODO: replace with hostname from .env
-	if ctx.Hostname() != "localhost" {
+	if hostnameWithoutPort != shared.AuthServiceHostname {
 		return ctx.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-			"error": "unauthorized",
+			"error": fmt.Sprintf("Hostname %s is not authorized", hostnameWithoutPort),
 		})
 	}
 
 	if err := ctx.BodyParser(&dto); err != nil {
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "invalid request",
+			"error": "invalid request " + string(ctx.BodyRaw()),
 		})
 	}
 
-	token, err := signJwt(jwtPayload{
-		Exp:    math.MaxInt64,
+	token, err := signJwt(JwtPayload{
+		Exp:    math.MaxInt32,
 		UserID: dto.UserId,
 	})
 	if err != nil {
@@ -58,40 +63,74 @@ func LoginRemoteController(ctx *fiber.Ctx) error {
 	})
 }
 
-func signJwt(payload jwtPayload) (string, error) {
+type GetJwtPayloadDto struct {
+	Token string `json:"token"`
+}
+
+// GetJwtPayloadController swagger:
+//
+//	@Summary Get JWT payload
+//	@Description This is a handler for auth-service only.
+//	@Tags auth
+//	@Accept json
+//	@Produce json
+//	@Param body body GetJwtPayloadDto true "Token"
+//	@Success 200 {object} object{payload=JwtPayload}
+//	@Failure 400 {object} object{error=string}
+//	@Router /get-jwt-payload [post]
+func GetJwtPayloadController(ctx *fiber.Ctx) error {
+	var dto GetJwtPayloadDto
+	if err := ctx.BodyParser(&dto); err != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "invalid request",
+		})
+	}
+
+	payload, err := decodeJwt(dto.Token)
+	if err != nil {
+		fmt.Printf("Error: %s\n", err.Error())
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"error": "invalid token",
+		})
+	}
+
+	return ctx.JSON(fiber.Map{
+		"payload": payload,
+	})
+}
+
+func signJwt(payload JwtPayload) (string, error) {
 	if payload.Exp == 0 {
-		payload.Exp = math.MaxInt64
+		payload.Exp = math.MaxInt32
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"exp":     payload.Exp,
-		"user_id": payload.UserID,
+		"ExpiresAt": payload.Exp,
+		"user_id":   payload.UserID,
 	})
 
-	// TODO: replace with secret from .env
-	return token.SignedString([]byte("TODO"))
+	return token.SignedString([]byte(shared.JwtSecret))
 }
 
-func decodeJwt(tokenString string) (jwtPayload, error) {
+func decodeJwt(tokenString string) (JwtPayload, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		// TODO: replace with secret from .env
-		return []byte("TODO"), nil
+		return []byte(shared.JwtSecret), nil
 	})
 	if err != nil {
-		return jwtPayload{}, err
+		return JwtPayload{}, err
 	}
 
 	if !token.Valid {
-		return jwtPayload{}, errors.New("invalid token")
+		return JwtPayload{}, errors.New("invalid token")
 	}
 
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !ok {
-		return jwtPayload{}, errors.New("invalid token claims")
+		return JwtPayload{}, errors.New("invalid token claims")
 	}
 
-	return jwtPayload{
-		Exp:    int64(claims["exp"].(float64)),
+	return JwtPayload{
+		Exp:    int64(claims["ExpiresAt"].(float64)),
 		UserID: int(claims["user_id"].(float64)),
 	}, nil
 }

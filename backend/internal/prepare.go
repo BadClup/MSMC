@@ -2,6 +2,7 @@ package internal
 
 import (
 	"backend/shared"
+	"github.com/joho/godotenv"
 	"os"
 )
 
@@ -10,7 +11,11 @@ func Prepare() error {
 		return err
 	}
 
+	_ = godotenv.Load()
 	if err := prepareFs(); err != nil {
+		return err
+	}
+	if err := shared.EnsureEnvAreSet(); err != nil {
 		return err
 	}
 

@@ -3,10 +3,7 @@ package main
 import (
 	_ "backend/docs"
 	"backend/internal"
-	"backend/internal/mcserver"
 	"fmt"
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/swagger"
 	"os"
 )
 
@@ -17,23 +14,10 @@ import (
 // @host		localhost:3000
 // @BasePath	/
 func main() {
-	err := internal.Prepare()
-	handleErr(err, "Failed to prepare the MSMC server")
+	app := internal.GetApp()
 
-	app := fiber.New()
-	app.Get("/swagger/*", swagger.HandlerDefault)
-
-	app.Route("/server", mcserver.Router)
-	app.Post("/login-remote", internal.LoginRemoteController)
-
-	err = app.Listen(":3000")
-	handleErr(err, "Failed to start server on port 3000")
-}
-
-// only for top-level usage
-func handleErr(err error, msg string) {
-	if err != nil {
-		fmt.Println(msg)
+	if err := app.Listen(":3000"); err != nil {
+		fmt.Println("Failed to start the server on port 3000")
 		fmt.Println(err.Error())
 		os.Exit(1)
 	}

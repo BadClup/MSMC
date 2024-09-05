@@ -12,7 +12,7 @@ type tokenResponse struct {
 }
 
 type jwtPayload struct {
-	Exp      int64  `json:"exp"`
+	Exp      int64  `json:"ExpiresAt"`
 	Email    string `json:"email"`
 	Username string `json:"username"`
 	UserID   int    `json:"user_id"`
@@ -20,14 +20,14 @@ type jwtPayload struct {
 
 func signJwt(payload jwtPayload) (string, error) {
 	if payload.Exp == 0 {
-		payload.Exp = math.MaxInt64
+		payload.Exp = math.MaxInt32
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"exp":      payload.Exp,
-		"email":    payload.Email,
-		"username": payload.Username,
-		"user_id":  payload.UserID,
+		"ExpiresAt": payload.Exp,
+		"email":     payload.Email,
+		"username":  payload.Username,
+		"user_id":   payload.UserID,
 	})
 
 	return token.SignedString([]byte(shared.JwtSecret))
@@ -51,7 +51,7 @@ func decodeJwt(tokenString string) (jwtPayload, error) {
 	}
 
 	return jwtPayload{
-		Exp:      int64(claims["exp"].(float64)),
+		Exp:      int64(claims["ExpiresAt"].(float64)),
 		Email:    claims["email"].(string),
 		Username: claims["username"].(string),
 		UserID:   int(claims["user_id"].(float64)),

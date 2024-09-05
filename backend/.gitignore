@@ -1,3 +1,5 @@
 # go binaries outputs:
 backend
 main
+
+.env

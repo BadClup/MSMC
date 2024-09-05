@@ -1,5 +1,17 @@
 basePath: /
 definitions:
+  internal.getJwtPayloadDto:
+    properties:
+      token:
+        type: string
+    type: object
+  internal.jwtPayload:
+    properties:
+      exp:
+        type: integer
+      user_id:
+        type: integer
+    type: object
   internal.loginRemoteDto:
     properties:
       user_id:
@@ -69,7 +81,39 @@ info:
   title: MSMC API
   version: "0.1"
 paths:
-  /auth/login:
+  /jwt-payload:
+    get:
+      consumes:
+      - application/json
+      description: This is a handler for auth-service only.
+      parameters:
+      - description: Token
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal.getJwtPayloadDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            properties:
+              payload:
+                $ref: '#/definitions/internal.jwtPayload'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            properties:
+              error:
+                type: string
+            type: object
+      summary: Get JWT payload
+      tags:
+      - auth
+  /login-remote:
     post:
       consumes:
       - application/json
