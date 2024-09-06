@@ -2,6 +2,7 @@
     import Top from "$lib/components/Top.svelte";
     import Footer from "$lib/components/Footer.svelte";
     import OptionsList from "$lib/components/optionsList.svelte";
+    import banPlayer from '$lib/images/banPlayer.svg';
 
     interface Player{
         name: string;
@@ -85,7 +86,7 @@
         display: inline-block;
         width: 100%;
         height: 50px;
-        margin-top: 22px;
+        margin-top: 18px;
         background-color: rgb(48, 48, 48);
     }
 
@@ -108,12 +109,15 @@
         float: right;
         background-color: rgb(48, 48, 48);
         color: white;
-        padding: 10px;
+        padding: 7px 10px 0px;
     }
 
     button{
-        width: 30px;
-        height: 30px;
+        width: 36px;
+        height: 36px;
+        background-color: transparent;
+        border: 0;
+        color: white;
     }
 </style>
 
@@ -128,7 +132,7 @@
                     <div class="buttonsContainer">
                         <button>O1</button>
                         <button>O2</button>
-                        <button>O3</button>
+                        <button><img src={banPlayer} alt="Ban"></button>
                         <button>O4</button>
                     </div>
                 </div>

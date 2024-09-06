@@ -22,15 +22,7 @@
         box-sizing: border-box;
         margin: 0;
         text-align: left;
-    }
-
-    #statusMargin{
-        height: 100%;
-        width: 11px;
-        background-color: navy;
-        box-sizing: border-box;
-        display: inline-block;
-        margin: 0;
+        border-left: 11px navy solid;
     }
 
     #status{
@@ -39,7 +31,7 @@
         box-sizing: border-box;
         text-align: left;
         position: relative;
-        bottom: 50px;
+        top: 35px;
         margin: 0;
         padding-left: 4px;
         font-size: 18px;
