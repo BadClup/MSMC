@@ -27,13 +27,18 @@
         width: 260px;
         height: 40%;
         position: relative;
+        position: relative;
     }
 
     img{
         display: inline-block;
         width: 340px;
         height: 340px;
+        width: 340px;
+        height: 340px;
         text-align: center;
+        position: relative;
+        bottom: 20px;
         position: relative;
         bottom: 20px;
     }
@@ -77,6 +82,7 @@
         font-size: 26px;
         font-weight: bolder;
         color: rgb(34, 196, 2);
+        color: rgb(34, 196, 2);
         margin:auto;
         padding-left: 6px;
         margin-top: 6px;
@@ -94,6 +100,43 @@
     a{
         font-size: 20px;
         color: rgb(103, 20, 247)
+    }
+
+    h1{
+        margin: auto;
+        text-align: center;
+        position: relative;
+        bottom: 35px;
+        bottom: 15px;
+    }
+
+    #modalForm{
+        display: inline-block;
+        width: 88%;
+        height: 80%;
+        margin-left: 38px;
+    }
+
+    #newLogin, #newPassword, #newPassword2{
+        box-sizing: border-box;
+        width: 90%;
+        height: 40px;
+        border-radius: 5px;
+        padding-left: 10xp;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    #create{
+        width: 200px;
+        height: 50px;
+        margin-left: 60px;
+        margin-top: 30px;
+    }
+
+    p{
+        box-sizing: border-box;
+        margin: 0;
     }
 
     h1{

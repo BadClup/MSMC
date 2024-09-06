@@ -34,6 +34,7 @@
         background-color: rgb(40,40,40);
         color: rgb(240,240,240);
         padding-top: 16px;
+        padding-top: 16px;
         padding-right: 40px;
         padding-left: 30px;
         box-sizing: border-box;

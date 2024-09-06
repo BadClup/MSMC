@@ -5,7 +5,7 @@
     export let author = "Failed to load author information";
 </script>
 <style>
-    #optionsList{
+    section{
         display: inline-block;
         box-sizing: border-box;
         width: 100%;
@@ -13,17 +13,8 @@
         padding: 0;
         background-color: rgb(129, 155, 182);
     }
-    
-    #statusMargin{
-        height: 100%;
-        width: 11px;
-        background-color: navy;
-        box-sizing: border-box;
-        display: inline-block;
-        margin: 0;
-    }
 
-    #statusContainer{
+    section > div{
         width: 100%;
         height: 140px;
         background-color: rgb(59, 59, 207);
@@ -31,6 +22,15 @@
         box-sizing: border-box;
         margin: 0;
         text-align: left;
+    }
+
+    #statusMargin{
+        height: 100%;
+        width: 11px;
+        background-color: navy;
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 0;
     }
 
     #status{
@@ -82,9 +82,10 @@
     }
 
     a{
-        display: inline-block;
+        display: block;
         width: 100%;
         height: 100%;
+        padding-top: 25px;
         text-decoration: none;
         color: inherit;
         padding-top: 25px;
@@ -96,13 +97,14 @@
     }
 </style>
 
-<div id="optionsList">
-    <div id="statusContainer">
+<section>
+    <div>
         <div id="statusMargin"></div>
         <div id="status">
             <p>Name: {name}</p>
             <p>Version: {version}</p>
             <p>Author: {author}</p>
+
         </div> 
         <div id="switchWrapper"><Switch/></div>
     </div>
@@ -116,4 +118,4 @@
         <li><a href="/configuration/backups">Backups</a></li>
         <li><a href="/configuration/access">Access</a></li>
     </ul>
-</div>
+</section>

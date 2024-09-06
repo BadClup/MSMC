@@ -25,12 +25,14 @@
         float: left;
         height: 100%;
         width: 240px;
+        width: 240px;
     }
 
     #settings{
         display: inline-block;
         box-sizing: border-box;
         height: 100%;
+        width: calc(100% - 240px);
         width: calc(100% - 240px);
         float: right;
         padding-top: 15px;
@@ -49,9 +51,18 @@
         box-sizing: border-box;
         width: 320px;
         height: 56px;
+        height: 56px;
         margin-left: 50px;
         margin-bottom: 20px;
+        margin-bottom: 20px;
         background-color: rgb(48, 48, 48);
+    }
+    
+    .textContainer{
+        display: inline-block;
+        float: left;
+        padding: 13px;
+        font-size: 24px;
     }
     
     .textContainer{
@@ -62,7 +73,9 @@
         color: white;
     }
 
+
     .switchContainer{
+        margin: 11px;
         margin: 11px;
         float: right;
     }

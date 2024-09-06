@@ -24,12 +24,14 @@
         float: left;
         height: 100%;
         width: 240px;
+        width: 240px;
     }
 
     #settings{
         display: inline-block;
         box-sizing: border-box;
         height: 100%;
+        width: calc(100% - 240px);
         width: calc(100% - 240px);
         float: right;
         padding-top: 15px;
@@ -46,11 +48,14 @@
 
     .infoContainer{
         display: inline-block;
+        display: inline-block;
         margin-left: 60px;
+        width: 350px;
         width: 350px;
     }
     
     .label{
+        display: inline;
         display: inline;
         font-size: 25px;
         color: inherit;
