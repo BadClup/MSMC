@@ -1,18 +1,18 @@
 basePath: /
 definitions:
-  internal.getJwtPayloadDto:
+  internal.GetJwtPayloadDto:
     properties:
       token:
         type: string
     type: object
-  internal.jwtPayload:
+  internal.JwtPayload:
     properties:
-      exp:
+      ExpiresAt:
         type: integer
       user_id:
         type: integer
     type: object
-  internal.loginRemoteDto:
+  internal.LoginRemoteDto:
     properties:
       user_id:
         type: integer
@@ -81,8 +81,8 @@ info:
   title: MSMC API
   version: "0.1"
 paths:
-  /jwt-payload:
-    get:
+  /get-jwt-payload:
+    post:
       consumes:
       - application/json
       description: This is a handler for auth-service only.
@@ -92,7 +92,7 @@ paths:
         name: body
         required: true
         schema:
-          $ref: '#/definitions/internal.getJwtPayloadDto'
+          $ref: '#/definitions/internal.GetJwtPayloadDto'
       produces:
       - application/json
       responses:
@@ -101,7 +101,7 @@ paths:
           schema:
             properties:
               payload:
-                $ref: '#/definitions/internal.jwtPayload'
+                $ref: '#/definitions/internal.JwtPayload'
             type: object
         "400":
           description: Bad Request
@@ -125,7 +125,7 @@ paths:
         name: body
         required: true
         schema:
-          $ref: '#/definitions/internal.loginRemoteDto'
+          $ref: '#/definitions/internal.LoginRemoteDto'
       produces:
       - application/json
       responses:

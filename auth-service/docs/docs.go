@@ -113,7 +113,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal.tokenResponse"
+                            "$ref": "#/definitions/internal.TokenResponse"
                         }
                     }
                 }
@@ -153,7 +153,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal.tokenResponse"
+                            "$ref": "#/definitions/internal.TokenResponse"
                         }
                     }
                 }
@@ -215,7 +215,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "internal.tokenResponse": {
+        "internal.TokenResponse": {
             "type": "object",
             "properties": {
                 "token": {

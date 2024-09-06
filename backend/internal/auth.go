@@ -26,7 +26,7 @@ type LoginRemoteDto struct {
 //	@Tags auth
 //	@Accept json
 //	@Produce json
-//	@Param body body loginRemoteDto true "User ID"
+//	@Param body body LoginRemoteDto true "User ID"
 //	@Success 200 {object} object{token=string}
 //	@Failure 400 {object} object{error=string}
 //	@Failure 401 {object} object{error=string}

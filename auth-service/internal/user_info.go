@@ -8,13 +8,6 @@ import (
 	"strconv"
 )
 
-// requires at least one property, returns all of them
-type userInfoDto struct {
-	Id       int    `json:"id,omitempty"`
-	Email    string `json:"email,omitempty"`
-	Username string `json:"username,omitempty"`
-}
-
 // UserInfoController swagger:
 //
 //	@Summary Get user info
@@ -24,18 +17,18 @@ type userInfoDto struct {
 //	@Param id body int false "ID"
 //	@Param email body string false "Email"
 //	@Param username body string false "Username"
-//	@Success 200 {object} userInfoDto
+//	@Success 200 {object} UserPublicData
 //	@Success 404 {object} object{error=string}
-//	@Router /get-user-info [post]
+//	@Router /get-user-data [post]
 func UserInfoController(ctx *fiber.Ctx) error {
-	var dto userInfoDto
+	var dto UserPublicData
 	if err := ctx.BodyParser(&dto); err != nil {
 		return ctx.Status(400).JSON(fiber.Map{
 			"error": "Invalid request body",
 		})
 	}
 
-	// At least one userInfoDto field must be filled:
+	// At least one UserPublicData field must be filled:
 	if dto.Id == 0 && dto.Email == "" && dto.Username == "" {
 		return ctx.Status(400).JSON(fiber.Map{
 			"error": "At least one field must be filled",
@@ -59,8 +52,8 @@ func UserInfoController(ctx *fiber.Ctx) error {
 	return ctx.JSON(res)
 }
 
-func userInfo(db *pgx.Conn, dto userInfoDto) (userInfoDto, error) {
-	var dbRes userInfoDto
+func userInfo(db *pgx.Conn, dto UserPublicData) (UserPublicData, error) {
+	var dbRes UserPublicData
 	ctx := context.Background()
 
 	err := db.QueryRow(ctx, `

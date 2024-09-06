@@ -3,9 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
-	"github.com/gofiber/swagger"
 	"github.com/jackc/pgx/v5"
 	"github.com/joho/godotenv"
 	_ "msmc/auth-service/docs"
@@ -29,18 +27,7 @@ func main() {
 	db, err := dbConnect(10, 1000) // TODO: move these params to env
 	handleErr(err, "Failed to connect to database")
 
-	app := fiber.New()
-	app.Use(func(c *fiber.Ctx) error {
-		c.Locals("db", db)
-		return c.Next()
-	})
-
-	app.Get("/swagger/*", swagger.HandlerDefault)
-
-	app.Post("/get-user-info", internal.UserInfoController)
-	app.Post("/register", internal.RegisterController)
-	app.Post("/login", internal.LoginController)
-	app.Post("/login-remote", internal.LoginRemoteController)
+	app := internal.GetApp(db)
 
 	err = app.Listen(":3001")
 	handleErr(err, "Failed to start server on port 3000")

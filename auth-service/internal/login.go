@@ -3,13 +3,14 @@ package internal
 import (
 	"context"
 	"crypto/sha512"
+	"encoding/hex"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
 	"github.com/jackc/pgx/v5"
 	"math"
 )
 
-type loginDto struct {
+type LoginDto struct {
 	Email    string `json:"email"`
 	Username string `json:"username"`
 	Password string `json:"password"`
@@ -24,10 +25,10 @@ type loginDto struct {
 //	@Param email body string false "Email"
 //	@Param username body string false "Username"
 //	@Param password body string true "Password"
-//	@Success 200 {object} tokenResponse
+//	@Success 200 {object} AuthResponse
 //	@Router /login [post]
 func LoginController(ctx *fiber.Ctx) error {
-	var payload loginDto
+	var payload LoginDto
 	if err := ctx.BodyParser(&payload); err != nil {
 		return ctx.Status(400).JSON(fiber.Map{
 			"error": "Invalid request body",
@@ -48,19 +49,17 @@ func LoginController(ctx *fiber.Ctx) error {
 
 	db := ctx.Locals("db").(*pgx.Conn)
 
-	token, err := login(db, payload)
+	response, err := login(db, payload)
 	if err != nil {
 		return ctx.Status(err.Code).JSON(fiber.Map{
 			"error": err.Message,
 		})
 	}
 
-	return ctx.JSON(tokenResponse{
-		Token: token,
-	})
+	return ctx.JSON(response)
 }
 
-func login(db *pgx.Conn, payload loginDto) (string, *fiber.Error) {
+func login(db *pgx.Conn, payload LoginDto) (AuthResponse, *fiber.Error) {
 	var userId int
 	var email, username, password string
 
@@ -73,14 +72,14 @@ func login(db *pgx.Conn, payload loginDto) (string, *fiber.Error) {
 
 	if err != nil {
 		log.Debugf("Failed to select user while loggin in: %v", err)
-		return "", fiber.NewError(400, "invalid email or username")
+		return AuthResponse{}, fiber.NewError(400, "invalid email or username")
 	}
 
 	hashedInputPassword := sha512.New()
 	hashedInputPassword.Write([]byte(payload.Password))
 
-	if password != string(hashedInputPassword.Sum(nil)) {
-		return "", fiber.NewError(400, "invalid password")
+	if password != hex.EncodeToString(hashedInputPassword.Sum(nil)) {
+		return AuthResponse{}, fiber.NewError(400, "invalid password")
 	}
 
 	token, err := signJwt(jwtPayload{
@@ -90,8 +89,15 @@ func login(db *pgx.Conn, payload loginDto) (string, *fiber.Error) {
 		UserID:   userId,
 	})
 	if err != nil {
-		return "", fiber.NewError(500, "Failed to sign jwt")
+		return AuthResponse{}, fiber.NewError(500, "Failed to sign jwt")
 	}
 
-	return token, nil
+	return AuthResponse{
+		Token: token,
+		User: UserPublicData{
+			Email:    email,
+			Username: username,
+			Id:       userId,
+		},
+	}, nil
 }

@@ -8,9 +8,13 @@ import (
 	"strings"
 )
 
-type loginRemoteDto struct {
+type LoginRemoteDto struct {
 	Token     string `json:"token"`
 	RemoteUrl string `json:"url"`
+}
+
+type TokenResponse struct {
+	Token string `json:"token"`
 }
 
 // LoginRemoteController swagger:
@@ -21,10 +25,10 @@ type loginRemoteDto struct {
 //	@Produce json
 //	@Param token body string true "Token"
 //	@Param url body string true "URL"
-//	@Success 200 {object} tokenResponse
+//	@Success 200 {object} TokenResponse
 //	@Router /login-remote [post]
 func LoginRemoteController(ctx *fiber.Ctx) error {
-	var payload loginRemoteDto
+	var payload LoginRemoteDto
 	if err := ctx.BodyParser(&payload); err != nil {
 		return ctx.Status(400).JSON(fiber.Map{
 			"error": "Invalid request body",
@@ -61,12 +65,12 @@ func LoginRemoteController(ctx *fiber.Ctx) error {
 	return ctx.JSON(token)
 }
 
-func loginRemote(url string, userId int) (tokenResponse, error) {
+func loginRemote(url string, userId int) (TokenResponse, error) {
 	if !strings.HasPrefix(url, "http://") && !strings.HasPrefix(url, "https://") {
 		url = "https://" + url
 	}
 	ctx := context.Background()
-	var res tokenResponse
+	var res TokenResponse
 
 	err := requests.
 		URL(url).

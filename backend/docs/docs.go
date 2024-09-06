@@ -15,8 +15,8 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/jwt-payload": {
-            "get": {
+        "/get-jwt-payload": {
+            "post": {
                 "description": "This is a handler for auth-service only.",
                 "consumes": [
                     "application/json"
@@ -35,7 +35,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal.getJwtPayloadDto"
+                            "$ref": "#/definitions/internal.GetJwtPayloadDto"
                         }
                     }
                 ],
@@ -46,7 +46,7 @@ const docTemplate = `{
                             "type": "object",
                             "properties": {
                                 "payload": {
-                                    "$ref": "#/definitions/internal.jwtPayload"
+                                    "$ref": "#/definitions/internal.JwtPayload"
                                 }
                             }
                         }
@@ -85,7 +85,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal.loginRemoteDto"
+                            "$ref": "#/definitions/internal.LoginRemoteDto"
                         }
                     }
                 ],
@@ -201,7 +201,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "internal.getJwtPayloadDto": {
+        "internal.GetJwtPayloadDto": {
             "type": "object",
             "properties": {
                 "token": {
@@ -209,10 +209,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal.jwtPayload": {
+        "internal.JwtPayload": {
             "type": "object",
             "properties": {
-                "exp": {
+                "ExpiresAt": {
                     "type": "integer"
                 },
                 "user_id": {
@@ -220,7 +220,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal.loginRemoteDto": {
+        "internal.LoginRemoteDto": {
             "type": "object",
             "properties": {
                 "user_id": {

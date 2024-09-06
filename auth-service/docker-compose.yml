@@ -1,7 +1,19 @@
 version: "3.7"
 
 services:
-  auth-service:
+  self-hosted-backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    network_mode: host
+    environment:
+      - DEV_MODE=false
+      - AUTH_SERVICE_HOSTNAME=localhost
+      - JWT_SECRET=secret # Just for testing purposes
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  auth-service-dev:
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,7 +23,27 @@ services:
     volumes:
       - .:/app
     command: [ "gow", "run", "." ]
+    profiles:
+      - dev
     depends_on:
+      - self-hosted-backend
+      - postgres
+      - migrate
+
+  auth-service-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - DEV_MODE=true
+    network_mode: host
+    volumes:
+      - .:/app
+    command: [ "go", "test", "./..." ]
+    profiles:
+      - test
+    depends_on:
+      - self-hosted-backend
       - postgres
       - migrate
 
@@ -30,7 +62,9 @@ services:
     network_mode: host
     volumes:
       - ./migrations:/migrations
-    command: [ "-path", "/migrations", "-database",  "postgres://postgres:postgres@localhost:5432/msmc-auth-service?sslmode=disable", "up" ]
+    # Never exiting allows us to use --abort-on-container-exit
+    # TODO: remove that sleep 1 quick fix
+    entrypoint: [ "sh", "-c", "sleep 1 && migrate -path /migrations -database postgres://postgres:postgres@localhost:5432/msmc-auth-service?sslmode=disable up && sleep infinity" ]
     depends_on:
       - postgres
 

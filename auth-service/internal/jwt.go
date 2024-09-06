@@ -7,10 +7,6 @@ import (
 	"msmc/auth-service/shared"
 )
 
-type tokenResponse struct {
-	Token string `json:"token"`
-}
-
 type jwtPayload struct {
 	Exp      int64  `json:"ExpiresAt"`
 	Email    string `json:"email"`

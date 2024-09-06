@@ -9,8 +9,8 @@
     "host": "localhost:3000",
     "basePath": "/",
     "paths": {
-        "/jwt-payload": {
-            "get": {
+        "/get-jwt-payload": {
+            "post": {
                 "description": "This is a handler for auth-service only.",
                 "consumes": [
                     "application/json"
@@ -29,7 +29,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal.getJwtPayloadDto"
+                            "$ref": "#/definitions/internal.GetJwtPayloadDto"
                         }
                     }
                 ],
@@ -40,7 +40,7 @@
                             "type": "object",
                             "properties": {
                                 "payload": {
-                                    "$ref": "#/definitions/internal.jwtPayload"
+                                    "$ref": "#/definitions/internal.JwtPayload"
                                 }
                             }
                         }
@@ -79,7 +79,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal.loginRemoteDto"
+                            "$ref": "#/definitions/internal.LoginRemoteDto"
                         }
                     }
                 ],
@@ -195,7 +195,7 @@
         }
     },
     "definitions": {
-        "internal.getJwtPayloadDto": {
+        "internal.GetJwtPayloadDto": {
             "type": "object",
             "properties": {
                 "token": {
@@ -203,10 +203,10 @@
                 }
             }
         },
-        "internal.jwtPayload": {
+        "internal.JwtPayload": {
             "type": "object",
             "properties": {
-                "exp": {
+                "ExpiresAt": {
                     "type": "integer"
                 },
                 "user_id": {
@@ -214,7 +214,7 @@
                 }
             }
         },
-        "internal.loginRemoteDto": {
+        "internal.LoginRemoteDto": {
             "type": "object",
             "properties": {
                 "user_id": {
