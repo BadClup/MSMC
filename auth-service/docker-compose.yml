@@ -64,7 +64,7 @@ services:
       - ./migrations:/migrations
     # Never exiting allows us to use --abort-on-container-exit
     # TODO: remove that sleep 1 quick fix
-    entrypoint: [ "sh", "-c", "sleep 1 && migrate -path /migrations -database postgres://postgres:postgres@localhost:5432/msmc-auth-service?sslmode=disable up && sleep infinity" ]
+    entrypoint: [ "sh", "-c", "sleep 2 && migrate -path /migrations -database postgres://postgres:postgres@localhost:5432/msmc-auth-service?sslmode=disable up && sleep infinity" ]
     depends_on:
       - postgres
 
