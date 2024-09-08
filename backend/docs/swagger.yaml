@@ -1,6 +1,23 @@
 basePath: /
 definitions:
-  server.createServerDto:
+  internal.GetJwtPayloadDto:
+    properties:
+      token:
+        type: string
+    type: object
+  internal.JwtPayload:
+    properties:
+      ExpiresAt:
+        type: integer
+      user_id:
+        type: integer
+    type: object
+  internal.LoginRemoteDto:
+    properties:
+      user_id:
+        type: integer
+    type: object
+  mcserver.createServerDto:
     properties:
       engine:
         allOf:
@@ -64,6 +81,78 @@ info:
   title: MSMC API
   version: "0.1"
 paths:
+  /get-jwt-payload:
+    post:
+      consumes:
+      - application/json
+      description: This is a handler for auth-service only.
+      parameters:
+      - description: Token
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal.GetJwtPayloadDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            properties:
+              payload:
+                $ref: '#/definitions/internal.JwtPayload'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            properties:
+              error:
+                type: string
+            type: object
+      summary: Get JWT payload
+      tags:
+      - auth
+  /login-remote:
+    post:
+      consumes:
+      - application/json
+      description: This is a handler for auth-service only. It returns a token, which
+        should be forwarded to the client.
+      parameters:
+      - description: User ID
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/internal.LoginRemoteDto'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            properties:
+              token:
+                type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            properties:
+              error:
+                type: string
+            type: object
+        "401":
+          description: Unauthorized
+          schema:
+            properties:
+              error:
+                type: string
+            type: object
+      summary: Login handler for auth-service only
+      tags:
+      - auth
   /server:
     get:
       operationId: get-all-servers
@@ -93,7 +182,7 @@ paths:
         name: server
         required: true
         schema:
-          $ref: '#/definitions/server.createServerDto'
+          $ref: '#/definitions/mcserver.createServerDto'
       produces:
       - application/json
       responses:

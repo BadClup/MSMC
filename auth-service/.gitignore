@@ -1,5 +1,6 @@
 # go binaries outputs:
-backend
+auth-service
 main
 
-.env
+# ide:
+.idea/

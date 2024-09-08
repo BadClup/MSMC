@@ -1,1 +1,5 @@
 backend/docs/* linguist-generated=true
+auth-service/docs/* linguist-generated=true
+*/go.sum linguist-generated=true
+*/go.mod linguist-generated=true
+

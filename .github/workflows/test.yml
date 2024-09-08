@@ -7,11 +7,11 @@ on:
       - main
 
 jobs:
-  build:
+  build-frontend:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [ 18.x ]
 
     defaults:
       run:
@@ -35,3 +35,47 @@ jobs:
       - name: Build project
         run: pnpm build
 
+  auth-service:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./auth-service
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build docker compose test environment
+        run: docker compose build
+
+      - name: run tests
+        run: ./scripts/run-docker.py test
+
+  backend:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: 1.23.0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Pull itzg/minecraft-server image
+        run: docker pull itzg/minecraft-server
+
+      - name: Build
+        run: go build
+
+      - name: Test
+        run: sudo go test -v ./...
