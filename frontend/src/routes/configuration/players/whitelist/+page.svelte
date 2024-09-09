@@ -3,7 +3,7 @@
     import Footer from "$lib/components/Footer.svelte";
     import OptionsList from "$lib/components/optionsList.svelte";
     import remove from '$lib/images/remove.svg';
-    import userAdd from '$lib/images/userAdd.svg';
+    import addUser from '$lib/images/addUser.svg';
 
     interface Player{
         name: string;
@@ -65,7 +65,7 @@
         background-color: transparent;
         border: none;
         outline: none;
-        padding: 12px;
+        padding: 14px;
         padding-left: 18px;
         flex-grow: 1
     }
@@ -74,7 +74,7 @@
         box-sizing: border-box;
         display: inline-block;
         width: 100%;
-        height: 50px;
+        height: 54px;
         margin-top: 18px;
         background-color: rgb(48, 48, 48);
     }
@@ -98,21 +98,26 @@
         float: right;
         background-color: rgb(48, 48, 48);
         color: white;
-        padding: 10px 15px 0px;
+        padding: 10px 6px 0px;
     }
 
-    button{
-        width: 30px;
-        height: 30px;
+    .remove{
+        width: 32px;
+        height: 32px;
         font-size: 16px;
         background-color: transparent;
         border: 0;
         color: white;
+        margin: 2px 5px;
     }
 
-    .userAdd{
-        width: 36px;
-        height: 36px;
+    .addUser{
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        background-color: transparent;
+        border: 0;
+        color: white;
     }
 </style>
 
@@ -125,14 +130,14 @@
             <div class="inputWrapper">
                 <input type="text" placeholder="Player name">
                 <div class="buttonsContainer" style="padding-right: 12px">
-                    <button class="userAdd"><img src={userAdd} alt="Add"></button>
+                    <button class="addUser"><img src={addUser} alt="Add"></button>
                 </div>
             </div>
             {#each whitelist as player}
             <div class="playerWrapper">
                 <div class="playerInfo">{player.name}</div>
                 <div class="buttonsContainer">
-                    <button><img src={remove} alt="Remove"></button>
+                    <button class="remove"><img src={remove} alt="Remove"></button>
                 </div>
             </div>
         {/each}

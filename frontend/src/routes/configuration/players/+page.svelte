@@ -2,7 +2,10 @@
     import Top from "$lib/components/Top.svelte";
     import Footer from "$lib/components/Footer.svelte";
     import OptionsList from "$lib/components/optionsList.svelte";
+    import kickPlayer from '$lib/images/kickPlayer.svg';
+    import operator from '$lib/images/operator.svg';
     import banPlayer from '$lib/images/banPlayer.svg';
+    import banIP from '$lib/images/banIP.svg';
 
     interface Player{
         name: string;
@@ -85,7 +88,7 @@
         box-sizing: border-box;
         display: inline-block;
         width: 100%;
-        height: 50px;
+        height: 54px;
         margin-top: 18px;
         background-color: rgb(48, 48, 48);
     }
@@ -95,7 +98,7 @@
         background-color: rgb(48, 48, 48);
         color: white;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 22px;
         padding: 13px;
     }
 
@@ -109,15 +112,21 @@
         float: right;
         background-color: rgb(48, 48, 48);
         color: white;
-        padding: 7px 10px 0px;
+        padding: 8px 6px 0px;
     }
 
     button{
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
         background-color: transparent;
         border: 0;
         color: white;
+        margin: 0px 2px;
+    }
+
+    button.smaller{
+        width: 36px; 
+        height: 36px
     }
 </style>
 
@@ -130,10 +139,10 @@
                 <div class="playerWrapper">
                     <div class="playerInfo">{player.name}</div>
                     <div class="buttonsContainer">
-                        <button>O1</button>
-                        <button>O2</button>
+                        <button><img src={kickPlayer} alt="kick"></button>
+                        <button><img src={operator} alt="Operator"></button>
                         <button><img src={banPlayer} alt="Ban"></button>
-                        <button>O4</button>
+                        <button class="smaller"><img src={banIP} alt="BanIP"></button>
                     </div>
                 </div>
             {/each}
