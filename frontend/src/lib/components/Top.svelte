@@ -15,7 +15,7 @@
         width: 45%;
         height: 100%;
         text-align: left;
-        font-size: 3em;
+        font-size: 48px;
         font-weight: bolder;
         background-color: rgb(40,40,40);
         color: rgb(240,240,240);
@@ -84,6 +84,12 @@
         top: 7px;
         right: 8px;
     }
+
+    @media screen and (max-width: 600px) {
+        #left{
+            font-size: 32px;
+        }
+    }
 </style>
 
 <header>
@@ -94,7 +100,7 @@
 
     <div id="right">
         {#if showServers == true}
-            <button id="servers">Log out</button>
+            <button id="servers">Servers</button>
         {/if}
         {#if isLoggedIn == true}
             <button id="logout">Log out</button>

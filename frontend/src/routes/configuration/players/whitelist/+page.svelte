@@ -3,6 +3,7 @@
     import Footer from "$lib/components/Footer.svelte";
     import OptionsList from "$lib/components/optionsList.svelte";
     import remove from '$lib/images/remove.svg';
+    import userAdd from '$lib/images/userAdd.svg';
 
     interface Player{
         name: string;
@@ -51,6 +52,24 @@
         margin-bottom: 40px;
     }
 
+    .inputWrapper{
+        background-color: rgb(48, 48, 48);
+        margin-bottom: 12px;
+        display: flex;
+    }
+
+    input{
+        font-size: 22px;
+        font-weight: 500;
+        color: white;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        padding: 12px;
+        padding-left: 18px;
+        flex-grow: 1
+    }
+
     .playerWrapper{
         box-sizing: border-box;
         display: inline-block;
@@ -85,9 +104,15 @@
     button{
         width: 30px;
         height: 30px;
+        font-size: 16px;
         background-color: transparent;
         border: 0;
         color: white;
+    }
+
+    .userAdd{
+        width: 36px;
+        height: 36px;
     }
 </style>
 
@@ -97,6 +122,12 @@
         <nav><OptionsList name={"name"} version={"version"} author={"author"}/></nav>
         <main>
             <h1>Whitelist</h1>
+            <div class="inputWrapper">
+                <input type="text" placeholder="Player name">
+                <div class="buttonsContainer" style="padding-right: 12px">
+                    <button class="userAdd"><img src={userAdd} alt="Add"></button>
+                </div>
+            </div>
             {#each whitelist as player}
             <div class="playerWrapper">
                 <div class="playerInfo">{player.name}</div>
