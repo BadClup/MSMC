@@ -103,8 +103,11 @@
     }
 
     .playerInfo::before{
-        content: url($lib/images/steve.png);
-        margin-right: 10px;
+        display: inline-block;
+        content: url($lib/images/steve.svg);
+        margin-right: 8px;
+        position: relative;
+        top: 2px;
     }
 
     .buttonsContainer{
@@ -128,16 +131,32 @@
         width: 36px; 
         height: 36px
     }
+
+    div.status{
+        display: inline-block;
+        background-color: gray;
+        border: 2px solid black;
+        border-radius: 50%;
+        width: 14px;
+        height: 14px;
+        position: relative;
+        top: 3px;
+    }
 </style>
 
 <section>
     <Top showServers={true} isLoggedIn={true}/>
     <div>
-        <nav><OptionsList name={"name"} version={"version"} author={"author"}/></nav>
+        <nav>
+            <OptionsList name={"name"} version={"version"} author={"author"}/>
+        </nav>
         <main>
             {#each players as player}
                 <div class="playerWrapper">
-                    <div class="playerInfo">{player.name}</div>
+                    <div class="playerInfo">
+                        <div class="status"></div>
+                        {player.name}
+                    </div>
                     <div class="buttonsContainer">
                         <button><img src={kickPlayer} alt="kick"></button>
                         <button><img src={operator} alt="Operator"></button>
@@ -149,7 +168,7 @@
         </main>
         <section>
             <a href="/configuration/players/whitelist" class="green">Whitelist</a>
-            <a href="#" class="green">Operators</a>
+            <a href="/configuration/players/operators" class="green">Operators</a>
             <a href="#" class="red">Banned players</a>
             <a href="#" class="red">Banned IP's</a>
         </section>

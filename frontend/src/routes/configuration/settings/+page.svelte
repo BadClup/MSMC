@@ -95,7 +95,9 @@
 <section>
     <Top showServers={true} isLoggedIn={true}/>
     <div>
-        <nav><OptionsList name={"name"} version={"version"} author={"author"}/></nav>
+        <nav>
+            <OptionsList name={"name"} version={"version"} author={"author"}/>
+        </nav>
         <div id="settings">
             <h1>Settings</h1>
             <div class="option">

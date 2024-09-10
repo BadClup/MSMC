@@ -130,7 +130,7 @@
             <OptionsList name={"name"} version={"version"} author={"author"}/>
         </nav>
         <main>
-            <h1>Whitelist</h1>
+            <h1>Operators</h1>
             <div class="inputWrapper">
                 <input type="text" placeholder="Player name">
                 <div class="buttonsContainer" style="padding-right: 12px">

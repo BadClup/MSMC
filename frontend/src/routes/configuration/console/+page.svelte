@@ -66,7 +66,9 @@
 <section>
     <Top showServers={true} isLoggedIn={true}/>
     <div>
-        <nav><OptionsList name={"name"} version={"version"} author={"author"}/></nav>
+        <nav>
+            <OptionsList name={"name"} version={"version"} author={"author"}/>
+        </nav>
         <div id="consoleContainer">
             <div id="consoleHistory"></div>
             <input type="text" autofocus spellcheck="false">
