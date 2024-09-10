@@ -1,7 +1,7 @@
 <script lang="ts">
     import Top from "$lib/components/Top.svelte";
     import Footer from "$lib/components/Footer.svelte";
-    import OptionsList from "./optionsList.svelte";
+    import OptionsList from "$lib/components/optionsList.svelte";
 </script>
 <style>
     section{
@@ -19,10 +19,11 @@
         flex: 1;
     }
 
-    #listContainer{
+    nav{
         display: inline-block;
         float: left;
         height: 100%;
+        width: 240px;
         width: 240px;
     }
 
@@ -30,6 +31,7 @@
         display: inline-block;
         box-sizing: border-box;
         height: 100%;
+        width: calc(100% - 240px);
         width: calc(100% - 240px);
         float: right;
         padding-top: 15px;
@@ -46,11 +48,14 @@
 
     .infoContainer{
         display: inline-block;
+        display: inline-block;
         margin-left: 60px;
+        width: 350px;
         width: 350px;
     }
     
     .label{
+        display: inline;
         display: inline;
         font-size: 25px;
         color: inherit;
@@ -75,9 +80,9 @@
 <section>
     <Top showServers={true} isLoggedIn={true}/>
     <div>
-        <div id="listContainer">
+        <nav>
             <OptionsList name={"name"} version={"version"} author={"author"}/>
-        </div>
+        </nav>
         <div id="settings">
             <h1>Server name</h1>
             <div class="infoContainer">

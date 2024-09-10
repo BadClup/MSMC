@@ -8,7 +8,7 @@
     section{
         display: inline-block;
         box-sizing: border-box;
-        width: 240px;
+        width: 100%;
         height: 100%;
         padding: 0;
         background-color: rgb(129, 155, 182);
@@ -22,24 +22,16 @@
         box-sizing: border-box;
         margin: 0;
         text-align: left;
-    }
-
-    #statusMargin{
-        height: 100%;
-        width: 11px;
-        background-color: navy;
-        box-sizing: border-box;
-        display: inline-block;
-        margin: 0;
+        border-left: 11px navy solid;
     }
 
     #status{
-        height: 100%;
+        height: 90px;
         display: inline-block;
         box-sizing: border-box;
         text-align: left;
         position: relative;
-        bottom: 50px;
+        top: 35px;
         margin: 0;
         padding-left: 4px;
         font-size: 18px;
@@ -47,12 +39,12 @@
 
     #switchWrapper{
         display: block;
-        height: 100%;
+        height: 34px;
         width: 60px;
         text-align: right;
         float: right;
         padding-top: 53px;
-        padding-right: 6px;
+        padding-right: 5px;
     }
 
     ul{
@@ -71,7 +63,7 @@
         width: 100%;
         height: 80px;
         background-color: rgb(129, 155, 182);
-        font-size: 24px;
+        font-size: 25px;
         font-weight: bold;
         color: white;
         border: solid 1px black;
@@ -88,6 +80,12 @@
         padding-top: 25px;
         text-decoration: none;
         color: inherit;
+        padding-top: 25px;
+    }
+
+    p{
+        margin: 0;
+        padding: 0;
     }
 </style>
 
@@ -98,6 +96,7 @@
             <p>Name: {name}</p>
             <p>Version: {version}</p>
             <p>Author: {author}</p>
+
         </div> 
         <div id="switchWrapper"><Switch/></div>
     </div>

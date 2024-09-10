@@ -16,7 +16,7 @@
         padding-top: 10%;
     }
  
-    #formContainer{
+    main{
         width: 270px;
         display: inline-block;
         margin-right: 30px;
@@ -27,13 +27,18 @@
         width: 260px;
         height: 40%;
         position: relative;
+        position: relative;
     }
 
     img{
         display: inline-block;
         width: 340px;
         height: 340px;
+        width: 340px;
+        height: 340px;
         text-align: center;
+        position: relative;
+        bottom: 20px;
         position: relative;
         bottom: 20px;
     }
@@ -76,6 +81,7 @@
     #pause{
         font-size: 26px;
         font-weight: bolder;
+        color: rgb(34, 196, 2);
         color: rgb(34, 196, 2);
         margin:auto;
         padding-left: 6px;
@@ -132,6 +138,43 @@
         box-sizing: border-box;
         margin: 0;
     }
+
+    h1{
+        margin: auto;
+        text-align: center;
+        position: relative;
+        bottom: 35px;
+        bottom: 15px;
+    }
+
+    #modalForm{
+        display: inline-block;
+        width: 88%;
+        height: 80%;
+        margin-left: 38px;
+    }
+
+    #newLogin, #newPassword, #newPassword2{
+        box-sizing: border-box;
+        width: 90%;
+        height: 40px;
+        border-radius: 5px;
+        padding-left: 10xp;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    #create{
+        width: 200px;
+        height: 50px;
+        margin-left: 60px;
+        margin-top: 30px;
+    }
+
+    p{
+        box-sizing: border-box;
+        margin: 0;
+    }
 </style>
 
 <Modal {opened} id="modal" target={"body"} on:close={() => (opened = false)}>
@@ -145,7 +188,7 @@
 </Modal>
 
 <section>
-    <div id="formContainer">
+    <main>
         <button id="register" on:click={() => (opened = true)}>Register</button>
         <div id="pause">
             <div id="line"></div>
@@ -162,6 +205,6 @@
             <p><a href="#">Help, I cannot log in</a></p>
             <p><a href="../servers">Skip</a></p>
         </form>
-    </div>
+    </main>
     <img src={logo} alt="Logo isn't working">
 </section>

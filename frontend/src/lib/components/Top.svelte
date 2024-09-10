@@ -4,7 +4,7 @@
     export let showServers = false;
 </script>
 <style>
-    #Top{
+    header{
         height: 85px;
         width: 100vw;
         box-sizing: border-box;
@@ -15,7 +15,7 @@
         width: 45%;
         height: 100%;
         text-align: left;
-        font-size: 3em;
+        font-size: 48px;
         font-weight: bolder;
         background-color: rgb(40,40,40);
         color: rgb(240,240,240);
@@ -34,6 +34,7 @@
         background-color: rgb(40,40,40);
         color: rgb(240,240,240);
         padding-top: 16px;
+        padding-top: 16px;
         padding-right: 40px;
         padding-left: 30px;
         box-sizing: border-box;
@@ -48,7 +49,7 @@
         top: 11px;
     }
 
-    button{
+    #logout, #servers{
         width: 120px;
         height: 30px;
         font-size: 20px;
@@ -58,26 +59,40 @@
         border: 0;
     }
 
-    #logout::before, #servers::before{
+    #servers{
+        margin-right: 20px;
+    }
+
+    #logout::before{
         display: inline-block;
         width: 30px;
         height: 30px;
         background-size: 30px;
+        content: url($lib/images/logout.svg);
         position: relative;
         top: 7px;
         right: 8px;
     }
 
-    #logout::before{
-        content: url($lib/images/logout.svg);
+    #servers::before{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+        content: url($lib/images/servers.svg);
+        position: relative;
+        top: 7px;
+        right: 8px;
     }
 
-    #servers::before{
-        content: url($lib/images/servers.svg);
+    @media screen and (max-width: 600px) {
+        #left{
+            font-size: 32px;
+        }
     }
 </style>
 
-<div id="Top">
+<header>
     <div id="left">
         <img src={logo} alt="Logo isn't working">
         MSMC
@@ -87,9 +102,8 @@
         {#if showServers == true}
             <button id="servers">Servers</button>
         {/if}
-        &nbsp&nbsp&nbsp&nbsp
         {#if isLoggedIn == true}
             <button id="logout">Log out</button>
         {/if}
     </div>
-</div>
+</header>

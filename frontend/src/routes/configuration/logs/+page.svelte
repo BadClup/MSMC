@@ -1,7 +1,7 @@
 <script lang="ts">
     import Top from "$lib/components/Top.svelte";
     import Footer from "$lib/components/Footer.svelte";
-    import OptionsList from "./../optionsList.svelte";
+    import OptionsList from "$lib/components/optionsList.svelte";
 </script>
 <style>
     section{
@@ -19,7 +19,7 @@
         flex: 1;
     }
 
-    #listContainer{
+    nav{
         display: inline-block;
         float: left;
         height: 100%;
@@ -52,9 +52,9 @@
 <section>
     <Top showServers={true} isLoggedIn={true}/>
     <div>
-        <div id="listContainer">
+        <nav>
             <OptionsList name={"name"} version={"version"} author={"author"}/>
-        </div>
+        </nav>
         <div id="logsContainer">
             <div id="logs">Logs</div>
         </div>
