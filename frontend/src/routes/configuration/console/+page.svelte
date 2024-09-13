@@ -32,46 +32,32 @@
         height: 100%;
         width: calc(100% - 240px);
         float: right;
-        padding-top: 15px;
         flex: 1;
+        padding: 3%;
     }
 
-    #consoleHistory{
-        display: inline-block;
-        box-sizing: border-box;
-        width: 90%;
-        height: 90%;
-        border-radius: 10px 10px 0 0;
-        margin-left: 5%;
-        background-color: black;
+    #terminal{
+        width: 100%;
+        height: 100%;
     }
-
-    input{
-        display: inline-block;
-        box-sizing: border-box;
-        width: 90%;
-        height: 40px;
-        border-radius: 0 0 10px 10px;
-        margin-left: 5%;
-        font-size: 16px;
-        padding-left: 10px;
-    }
-    
-    input:focus{
-        outline: none;
-    }
-
 </style>
 
 <section>
+    <link rel="stylesheet" href="../../../node_modules/@xterm/xterm/css/xterm.css"/>
+    <script src="../../../node_modules/@xterm/xterm/lib/xterm.js"></script>
+
     <Top showServers={true} isLoggedIn={true}/>
     <div>
         <nav>
             <OptionsList name={"name"} version={"version"} author={"author"}/>
         </nav>
         <div id="consoleContainer">
-            <div id="consoleHistory"></div>
-            <input type="text" autofocus spellcheck="false">
+            <div id="terminal"></div>
+            <script>
+                var term = new Terminal();
+                term.open(document.getElementById('terminal'));
+                term.write('MSMC console $ ');
+            </script>
         </div>
     </div>
     <Footer/>

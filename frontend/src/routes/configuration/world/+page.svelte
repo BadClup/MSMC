@@ -25,6 +25,23 @@
         height: 100%;
         width: 240px;
     }
+
+    main{
+        display: inline-block;
+        box-sizing: border-box;
+        width: calc(100% - 240px);
+        height: 100%;
+        padding-top: 2%;
+    }
+
+    h1{
+        text-align: center;
+        font-weight: bold;
+        font-size: 60px;
+        color: inherit;
+        margin: 0;
+        margin-bottom: 40px;
+    }
 </style>
 
 <section>
@@ -33,6 +50,9 @@
         <nav>
             <OptionsList name={"name"} version={"version"} author={"author"}/>
         </nav>
+        <main>
+            <h1>World</h1>
+        </main>
     </div>
     <Footer/>
 </section>

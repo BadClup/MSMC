@@ -22,6 +22,7 @@
 	"type": "module",
 	"dependencies": {
 		"@svelteuidev/composables": "^0.15.7",
-		"@svelteuidev/core": "^0.15.7"
+		"@svelteuidev/core": "^0.15.7",
+		"@xterm/xterm": "^5.5.0"
 	}
 }

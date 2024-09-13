@@ -169,8 +169,8 @@
         <section>
             <a href="/configuration/players/whitelist" class="green">Whitelist</a>
             <a href="/configuration/players/operators" class="green">Operators</a>
-            <a href="#" class="red">Banned players</a>
-            <a href="#" class="red">Banned IP's</a>
+            <a href="/configuration/players/banned_players" class="red">Banned players</a>
+            <a href="/configuration/players/banned_ips" class="red">Banned IP's</a>
         </section>
     </div>
     <Footer/>
