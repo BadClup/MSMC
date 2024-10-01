@@ -2,6 +2,34 @@
     import Top from "$lib/components/Top.svelte";
     import Footer from "$lib/components/Footer.svelte";
     import OptionsList from "$lib/components/optionsList.svelte";
+    import { onMount } from 'svelte';
+    
+    onMount(() => {
+        const terminalElement = document.getElementById('terminal');
+        const term = new Terminal();
+
+        if (terminalElement) {
+            term.open(terminalElement);
+            term.write('$ ');
+
+            term.onKey((key) => {
+                const char = key.domEvent.key;
+                if (char === 'Backspace') {
+                    if (term.buffer.active.cursorX > 2) 
+                        term.write('\b \b');
+                    else if(term.buffer.active.cursorY > 0)
+                        if(term.buffer.active.cursorX == 0) 
+                            term.write('\b\b\b\b\b$ \b\b\b\b\b');
+                        else 
+                            term.write('\b \b');
+                } else if (char === 'Enter') {
+                    term.write('\r\n$ ');  
+                } else if (char.length === 1) {
+                    term.write(char);
+                }
+            });
+        }
+    });
 </script>
 <style>
     section{
@@ -32,37 +60,27 @@
         height: 100%;
         width: calc(100% - 240px);
         float: right;
-        padding-top: 15px;
         flex: 1;
+        padding: 3%;
     }
 
-    #consoleHistory{
-        display: inline-block;
-        box-sizing: border-box;
-        width: 90%;
-        height: 90%;
-        border-radius: 10px 10px 0 0;
-        margin-left: 5%;
+    #terminal{
+        width: 100%;
+        height: 100%;
+        padding: 3px 0px 3px 10px;
         background-color: black;
     }
 
-    input{
-        display: inline-block;
-        box-sizing: border-box;
-        width: 90%;
-        height: 40px;
-        border-radius: 0 0 10px 10px;
-        margin-left: 5%;
-        font-size: 16px;
-        padding-left: 10px;
+    #terminal::selection{
+        background-color: white;
+        color: black;
     }
-    
-    input:focus{
-        outline: none;
-    }
-
 </style>
 
+<head>
+    <link rel="stylesheet" href="../../../node_modules/@xterm/xterm/css/xterm.css" />
+    <script src="../../../node_modules/@xterm/xterm/lib/xterm.js"></script>
+</head>
 <section>
     <Top showServers={true} isLoggedIn={true}/>
     <div>
@@ -70,8 +88,7 @@
             <OptionsList name={"name"} version={"version"} author={"author"}/>
         </nav>
         <div id="consoleContainer">
-            <div id="consoleHistory"></div>
-            <input type="text" autofocus spellcheck="false">
+            <div id="terminal"></div>
         </div>
     </div>
     <Footer/>
