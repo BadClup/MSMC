@@ -3,6 +3,7 @@
     import Footer from "$lib/components/Footer.svelte";
     import OptionsList from "$lib/components/optionsList.svelte";
 </script>
+
 <style>
     section{
         display: flex;
@@ -24,6 +25,12 @@
         float: left;
         height: 100%;
         width: 240px;
+    }
+
+    #terminal{
+        width: 900px;
+        height: 700px;
+        float: right;
     }
 </style>
 
